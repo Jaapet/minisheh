@@ -1,0 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/31 20:23:00 by ggualerz          #+#    #+#             */
+/*   Updated: 2023/03/31 20:39:39 by ggualerz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	if (lst)
+	{
+		if (*lst)
+			(ft_lstlast(*lst))->next = new;
+		else
+			*lst = new;
+	}
+}
