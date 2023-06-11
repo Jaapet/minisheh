@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/10 18:17:25 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:23:01 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
 # include "libft/includes/libft.h"
 // TEMPORARY
 # define ERR_DUMMY 1
@@ -26,14 +28,10 @@
 // BOOL
 # define TRUE 1
 # define FALSE 0
-// MINISHELL SUPER STRUCTURE
-typedef struct s_ms
-{
-	t_node	*node_lst;
-	char	**envp;
-	size_t	node_nb;
-	int		*pipes;
-} t_ms;
+// COLORS
+# define PUR "\033[0;35m"
+# define CYA "\033[0;36m"
+# define STD "\033[0m"
 // NODE OF t_ms.node_lst
 typedef	struct s_node
 {
@@ -46,8 +44,17 @@ typedef	struct s_node
 	pid_t	pid;
 	int		fd_i;
 	int		fd_o;
-	t_node	*next;
+	struct s_node	*next;
 }	t_node;
+// MINISHELL SUPER STRUCTURE
+typedef struct s_ms
+{
+	t_node	*node_lst;
+	char	**envp;
+	size_t	node_nb;
+	int		*pipes;
+} t_ms;
+
 
 
 #endif
