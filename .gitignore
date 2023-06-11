@@ -1,1 +1,4 @@
 pipex/
+minishell
+*.o
+*.dSYM
