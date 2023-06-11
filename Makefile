@@ -6,12 +6,12 @@
 #    By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/11 17:43:32 by ggualerz          #+#    #+#              #
-#    Updated: 2023/06/11 19:38:24 by ggualerz         ###   ########.fr        #
+#    Updated: 2023/06/11 20:18:36 by ggualerz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES  = 	main.c \
-			exec/exec.c exec/exec_utils.c exec/exec_redir.c exec/exec_fd.c
+			exec/exec.c exec/exec_utils.c exec/exec_redir.c exec/exec_fd.c exec/exec_fork.c
 NAME     = minishell
 OBJECTS  = ${SOURCES:.c=.o}
 

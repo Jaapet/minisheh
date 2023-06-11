@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/11 18:29:18 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/11 22:02:35 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_ms
 	int		*pipes;
 }	t_ms;
 // EXEC
-void	ft_exec(t_ms *ms);
+void	ft_exec(t_ms *ms, char **envp);
 
 
 #endif
