@@ -2,3 +2,4 @@ pipex/
 minishell
 *.o
 *.dSYM
+dummy.txt
