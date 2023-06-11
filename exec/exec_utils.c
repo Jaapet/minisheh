@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:00:52 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/10 17:39:30 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:08:14 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@ void	ft_init_pipes(t_ms *ms)
 {
 	size_t	i;
 
-	ms->pipes= ft_calloc((ms->node_nb - 1) * 2, sizeof(int));
+	ms->pipes= ft_calloc((ms->node_nb) * 2, sizeof(int));
 	if (ms->pipes == NULL)
-		ft_exit(ERR_DUMMY, ms);
+		{}
+		//ft_exit(ERR_DUMMY, ms);
 	i = 0;
-	while (i < (ms->node_nb - 1) * 2)
+	while (i < (ms->node_nb) * 2)
 	{
 		if (pipe(ms->pipes + i) < 0)
-			ft_exit(ERR_DUMMY, ms);
+		{}
+		//	ft_exit(ERR_DUMMY, ms);
 		i += 2;
 	}
 }
@@ -54,9 +56,9 @@ void	ft_lst_set_index(t_node *lst)
 	size_t	i;
 
 	if (lst == NULL)
-		return (0);
+		return ;
 	i = 0;
-	while (lst->next != NULL)
+	while (lst != NULL)
 	{
 		lst->index = i;
 		lst = lst->next;

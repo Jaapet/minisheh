@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/11 17:10:52 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:29:18 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+
 # include "libft/includes/libft.h"
 // TEMPORARY
 # define ERR_DUMMY 1
@@ -54,7 +55,8 @@ typedef struct s_ms
 	size_t	node_nb;
 	int		*pipes;
 }	t_ms;
-
+// EXEC
+void	ft_exec(t_ms *ms);
 
 
 #endif

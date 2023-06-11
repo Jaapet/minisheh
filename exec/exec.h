@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:01:53 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/11 17:20:07 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/11 17:56:10 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	ft_assign_fd(t_ms *ms);
 # define FLAG_OUTFILE_APPEND (O_WRONLY | O_CREAT | O_APPEND)
 void	ft_set_redir(t_ms *ms);
 /* EXEC */
-//titi
+void	ft_exec(t_ms *ms);
 #endif

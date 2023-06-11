@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:33:44 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/11 17:11:09 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:00:18 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ static void	ft_init_exec(t_ms *ms)
 
 void	ft_exec(t_ms *ms)
 {
-	void	ft_init_exec(t_ms *ms);
+	ft_init_exec(ms);
+	free(ms);
 }
