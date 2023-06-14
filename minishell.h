@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/11 17:10:52 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:52:49 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@
 // NODE OF t_ms.node_lst
 typedef struct s_node
 {
-	size_t			index;
-	char			**cmd;
-	bool			is_redir;
-	char			redir_t;
-	char			*i_file;
-	char			*o_file;
-	pid_t			pid;
-	int				fd_i;
-	int				fd_o;
-	struct s_node	*next;
+	size_t			index; //g
+	char			**cmd; //n
+	bool			is_redir; //n
+	char			redir_t; //n
+	char			*i_file; //n
+	char			*o_file; //n
+	pid_t			pid; //g
+	int				fd_i; //g
+	int				fd_o; //g
+	struct s_node	*next; //n
 }	t_node;
 // MINISHELL SUPER STRUCTURE
 typedef struct s_ms
