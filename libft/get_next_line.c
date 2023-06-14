@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 14:25:51 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/05/18 20:43:38 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:24:13 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "includes/get_next_line.h"
 
 void	ft_rm_old_nl(t_list **lst)
 {

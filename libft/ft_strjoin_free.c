@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 06:21:59 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/04/19 06:56:46 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:23:03 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 char	*ft_strjoin_free(char *s1, char *s2)
 {
