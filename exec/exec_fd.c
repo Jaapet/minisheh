@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:21:32 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/10 17:38:16 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/11 22:28:41 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@ static void ft_node_i(t_ms *ms, size_t i)
 {
 	if (i == 0)
 	{
-		ft_get_node(ms->node_lst, 0)->fd_i = 0;
-		ft_get_node(ms->node_lst, 0)->fd_o = ms->pipes[2];
+		ft_get_node(ms->node_lst, 0)->fd_i = STDIN_FILENO;
+		ft_get_node(ms->node_lst, 0)->fd_o = ms->pipes[3];
 	}
 	else if (i == ms->node_nb - 1)
 	{
-		ft_get_node(ms->node_lst, i)->fd_i = ms->pipes[ms->node_nb * 2 - 2];
-		ft_get_node(ms->node_lst, i)->fd_o = 1;
+		ft_get_node(ms->node_lst, i)->fd_i = ms->pipes[i * 2];
+		ft_get_node(ms->node_lst, i)->fd_o = STDOUT_FILENO;
 	}
 	else
 	{
-		ft_get_node(ms->node_lst, i)->fd_i = ms->pipes[i * 2 + 1];
-		ft_get_node(ms->node_lst, i)->fd_o = ms->pipes[i * 2 + 2];
+		ft_get_node(ms->node_lst, i)->fd_i = ms->pipes[i * 2];
+		ft_get_node(ms->node_lst, i)->fd_o = ms->pipes[i * 2 + 3];
 	}
 }
 //We assume than there is already 1 or more nodes in the list
