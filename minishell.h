@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/11 17:10:52 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/06/17 15:43:29 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,6 @@
 // BOOL
 # define TRUE 1
 # define FALSE 0
-// COLORS
-# define PUR "\033[0;35m"
-# define CYA "\033[0;36m"
-# define STD "\033[0m"
 // NODE OF t_ms.node_lst
 typedef struct s_node
 {
