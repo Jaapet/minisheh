@@ -2,4 +2,5 @@ pipex/
 minishell
 *.o
 *.dSYM
-dummy.txt
+*.txt
+*.a

@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:11:24 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/17 15:43:16 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/17 16:15:14 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	ft_banner(void)
 	printf("   ___| |__\n | |\\/| | | '_ \\| |\\___ \\| '_ \\ / _ \\ '_ \\");
 	printf("\n | |  | | | | | | |____) | | | |  __/ | | |\n |_|  |_|_|_| |_|_");
 	printf("|_____/|_| |_|\\___|_| |_|\n");
-	printf("%s\t     ndesprez X ggualerz\n%s", CYA, STD);
+	printf("%s\t     ndesprez X ggualerz\n%s\n\n", CYA, STD);
 }

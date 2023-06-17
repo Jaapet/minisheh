@@ -11,7 +11,9 @@
             "environment": [],
             "MIMode": "lldb",
             "stopAtEntry": false,
-            "preLaunchTask": "Build and Clean"
+            "preLaunchTask": "Build and Clean",
+			"externalConsole": false,
+
         }
     ]
 }

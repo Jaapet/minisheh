@@ -6,12 +6,13 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:36:47 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/11 22:29:57 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/17 16:04:53 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <readline/readline.h>
+#include <readline/history.h>
 
 static t_ms *dummy_ms(char **envp)
 {
@@ -41,10 +42,10 @@ static t_ms *dummy_ms(char **envp)
 	node3->cmd[0] = ft_strdup("/usr/bin/wc");
 	node3->is_redir = FALSE;
 
-	dummy->node_nb = 2;
+	dummy->node_nb = 3;
 	dummy->node_lst = node1;
 	node1->next = node2;
-	node2->next = NULL;
+	node2->next = node3;
 	node3->next = NULL;
 	return (dummy);
 }
@@ -52,22 +53,18 @@ static t_ms *dummy_ms(char **envp)
 int main(int ac, char **av, char **env)
 {
 	t_ms *ms;
+	char *rl;
 	
 	ms = dummy_ms(env);
-	// printf("%s\n  __  __ _       _  _____ _          _\n |  \\/  (_)   ", PUR);
-	// printf("  (_)/ ____| |        | |\n | \\  / |_ _ __  _| (___ | |__");
-	// printf("   ___| |__\n | |\\/| | | '_ \\| |\\___ \\| '_ \\ / _ \\ '_ \\");
-	// printf("\n | |  | | | | | | |____) | | | |  __/ | | |\n |_|  |_|_|_| |_|_");
-	// printf("|_____/|_| |_|\\___|_| |_|\n");
-	// printf("%s\t     ndesprez X ggualerz\n%s", CYA, STD);
-	// while (1)
-	// {
-	// 	printf("\n%s", readline("\033[0;35mMiniSheh>\033[0m"));
-	// }
-	// check ac;
 	ac = 0;
 	av = NULL;
 	
-	ft_exec(ms, env);
+	ft_banner();
+	while (1)
+	{
+		rl = readline("minisheh>");
+		add_history(rl);
+	}
+	//ft_exec(ms, env);
 	return (0);
 }
