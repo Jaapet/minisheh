@@ -4,3 +4,4 @@ minishell
 *.dSYM
 *.txt
 *.a
+parsing/

@@ -6,13 +6,14 @@
 #    By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/11 17:43:32 by ggualerz          #+#    #+#              #
-#    Updated: 2023/06/17 16:14:24 by ggualerz         ###   ########.fr        #
+#    Updated: 2023/06/17 16:38:59 by ggualerz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES  = 	main.c \
 			exec/exec.c exec/exec_utils.c exec/exec_redir.c exec/exec_fd.c exec/exec_fork.c\
 			sexy/sexy.c
+			# parsing/parser.c parsing/line_splitter.c
 NAME     = minishell
 OBJECTS  = ${SOURCES:.c=.o}
 

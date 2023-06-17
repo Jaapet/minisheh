@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:28:00 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/06/14 19:47:26 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/06/17 16:36:39 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static void	proc_redir(t_node **node, char *cmd, int index)
-{
+// static void	proc_redir(t_node **node, char *cmd, int index)
+// {
 	
-}
+// }
 
 static t_node	*create_node(char *cmd)
 {
 	t_node	*new;
-	int		i;
+	size_t		i;
 
 	new = malloc(sizeof(t_node));
 	if (!new)
