@@ -8,7 +8,9 @@
             "program": "${workspaceFolder}/minishell",
             "args": [" "],
             "cwd": "${workspaceFolder}",
-            "environment": [],
+            "environment": [ 
+				{ "name": "LOGNAME", "value": "ggualerz" },
+			],
             "MIMode": "lldb",
             "stopAtEntry": false,
             "preLaunchTask": "Build and Clean",

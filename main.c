@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:36:47 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/17 16:39:39 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/17 16:55:27 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int main(int ac, char **av, char **env)
 	ft_banner();
 	while (1)
 	{
-		rl = readline("minisheh>");
+		ms->prompt = ft_prompt_str(env);
+		rl = readline(ms->prompt);
 		add_history(rl);
 		// ms->node_lst = parse(rl);
 		ft_exec(ms, env);
