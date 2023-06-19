@@ -6,23 +6,18 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:28:00 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/06/14 19:47:26 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/06/19 20:21:42 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-static void	proc_redir(t_node **node, char *cmd, int index)
-{
-	
-}
 
 static t_node	*create_node(char *cmd)
 {
 	t_node	*new;
 	int		i;
 
-	new = malloc(sizeof(t_node));
+	new = ft_calloc(1, sizeof(t_node));
 	if (!new)
 		return (NULL);
 	new->next = NULL;
@@ -34,9 +29,9 @@ static t_node	*create_node(char *cmd)
 		i++;
 	}
 	if (i == ft_strlen(cmd))
-		new->cmd = ft_strtrim(cmd, " ");
+		set_cmd(&new, cmd, 0, i);
 	else
-		proc_redir(&new, cmd, i);
+		proc_redir(&new, cmd);
 	return (new);
 }
 

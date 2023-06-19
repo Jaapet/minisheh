@@ -6,13 +6,13 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 18:00:11 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/06/12 18:29:31 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:08:51 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static char	update_quote(char quote, char cur)
+char	update_quote(char quote, char cur)
 {
 	if (!quote && (cur == '\'' || cur == '"'))
 		return (cur);
@@ -21,7 +21,7 @@ static char	update_quote(char quote, char cur)
 	return (quote);
 }
 
-static int	count(char *line)
+static int	count_cmds(char *line)
 {
 	int		i;
 	int		count;
@@ -75,7 +75,7 @@ char	**split_line(char *line)
 
 	i = 0;
 	quote = 0;
-	list = ft_calloc((count(line) + 1), sizeof(char *));
+	list = ft_calloc((count_cmds(line) + 1), sizeof(char *));
 	if (list == NULL)
 		return (NULL);
 	while (*line)
