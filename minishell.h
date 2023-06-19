@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/17 17:48:47 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/19 19:26:19 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,8 @@ void	ft_banner(void);
 char *ft_prompt_str (char **env);
 // PARSING
 t_node	*parse(char *line);
-
+//BUILTIN
+void	ft_pwd(void);
+void	ft_cd(char *path);
+void 	ft_echo(char **cmd);
 #endif

@@ -3,6 +3,7 @@
 		"libft.h": "c",
 		"pipex.h": "c",
 		"minishell.h": "c",
-		"readline.h": "c"
+		"readline.h": "c",
+		"stdbool.h": "c"
 	}
 }

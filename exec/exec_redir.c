@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:11:10 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/17 17:54:47 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:37:26 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_set_redir(t_ms *ms)
 	t_node	*lst;
 	size_t	i;
 
+	i = 0;
 	lst = ms->node_lst;
 	while (lst)
 	{
