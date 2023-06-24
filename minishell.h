@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/19 19:26:19 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/24 19:58:40 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,10 @@ t_node	*parse(char *line);
 void	ft_pwd(void);
 void	ft_cd(char *path);
 void 	ft_echo(char **cmd);
+void	ft_env(t_ms *ms);
+void	ft_export(t_ms *ms, char **cmd);
+void	ft_unset(t_ms *ms, char **cmd);
+//BUILTIN UTILS
+char 	**ft_dup_env(char **envp);
+bool	ft_is_in_env(t_ms *ms, char *varname);
 #endif

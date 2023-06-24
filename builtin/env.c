@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/19 17:23:09 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/24 20:19:21 by ggualerz         ###   ########.fr       */
+/*   Created: 2023/06/23 20:07:03 by ggualerz          #+#    #+#             */
+/*   Updated: 2023/06/24 17:57:53 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
-# include "../minishell.h"
-# include <stdbool.h>
-size_t	ft_get_env_size(char **envp);
-void	ft_free_env(t_ms *ms);
-void	ft_add_env(t_ms *ms, char *export_arg);
-void	ft_rm_env(t_ms *ms, char *unset_arg);
-char	*ft_isolate_var(char *full_var);
-#endif
+#include "builtin.h"
+
+void	ft_env(t_ms *ms) // probleme $_ non mis a jour
+{
+	size_t i;
+
+	i = 0;
+	while (ms->envp[i])
+	{
+		if (ft_strchr(ms->envp[i], '=') != NULL)
+			printf("%s\n",ms->envp[i]);
+		i++;
+	}
+}

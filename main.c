@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:36:47 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/19 21:04:44 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/24 19:59:17 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-static t_ms *dummy_ms(char **envp)
+static t_ms *dummy_ms(void)
 {
 	t_ms	*dummy;
 	t_node	*node1;
@@ -22,7 +22,6 @@ static t_ms *dummy_ms(char **envp)
 	// t_node	*node3;
 
 	dummy = ft_calloc(1, sizeof(t_ms));
-	dummy->envp = envp;
 	
 	node1 = ft_calloc(1, sizeof(t_node));
 	// node2 = ft_calloc(1, sizeof(t_node));
@@ -55,34 +54,48 @@ int main(int ac, char **av, char **env)
 	t_ms *ms;
 	char *rl;
 	
-	ms = dummy_ms(env);
+	ms = dummy_ms();
 	ac = 0;
 	av = NULL;
+	ms->envp = ft_dup_env(env);
 	ft_banner();
 	char **cmd;
-	cmd = ft_calloc(6, sizeof(char *));
-	cmd[0] = ft_strdup("echo");
-	cmd[1] = ft_strdup("-nnnn");
-	cmd[2] = ft_strdup("-nnhn");
-	cmd[3] = ft_strdup("noe");
-	cmd[4] = ft_strdup("lol");
-	ft_echo(cmd);
+	cmd = ft_calloc(5, sizeof(char *));
+	cmd[0] = ft_strdup("export");
+	cmd[1] = ft_strdup("A=42");
+	cmd[2] = ft_strdup("B=42");
+	cmd[3] = ft_strdup("C");
+	char **cmd2;
+	cmd2 = ft_calloc(5, sizeof(char *));
+	cmd2[0] = ft_strdup("unset");
+	cmd2[1] = ft_strdup("A");
+	cmd2[1] = ft_strdup("C");
+	// ft_echo(cmd);
+	// ft_env(ms);
 	rl = NULL;
-	// while (1)
-	// {
-	// 	ms->prompt = ft_prompt_str(env);
-	// 	rl = readline(ms->prompt);
-	// 	add_history(rl);
-	// 	// ms->node_lst = parse(rl)s;
-	// 	// ft_exec(ms, env);
-	// 	// ft_pwd();
-	// 	if (*rl == 'p')
-	// 		ft_pwd();
-	// 	else // cd
-	// 	{
-			
-	// 	}
-	// }
+	while (1)
+	{
+		ms->prompt = ft_prompt_str(env);
+		rl = readline(ms->prompt);
+		add_history(rl);
+		// ms->node_lst = parse(rl)s;
+		// ft_exec(ms, env);
+		// ft_pwd();
+		if (*rl == 'p')
+			ft_pwd();
+		else if (*rl == 'e')
+			ft_env(ms);
+		else if (*rl == 'X')
+			ft_export(ms, cmd);
+		else if (*rl == 'x')
+			ft_export(ms, NULL);
+		else if (*rl == 'u')
+			ft_unset(ms, cmd2);
+		else // cd
+		{
+			ft_cd(rl);
+		}
+	}
 	//ft_exec(ms, env);
 	return (0);
 }

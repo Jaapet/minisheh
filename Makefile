@@ -6,14 +6,14 @@
 #    By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/11 17:43:32 by ggualerz          #+#    #+#              #
-#    Updated: 2023/06/19 19:26:00 by ggualerz         ###   ########.fr        #
+#    Updated: 2023/06/24 18:54:18 by ggualerz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES  = 	main.c \
 			exec/exec.c exec/exec_utils.c exec/exec_redir.c exec/exec_fd.c exec/exec_fork.c\
 			sexy/sexy.c\
-			builtin/pwd.c builtin/cd.c builtin/echo.c
+			builtin/pwd.c builtin/cd.c builtin/echo.c builtin/env.c builtin/export.c builtin/utils.c builtin/unset.c
 			# parsing/parser.c parsing/line_splitter.c
 NAME     = minishell
 OBJECTS  = ${SOURCES:.c=.o}
