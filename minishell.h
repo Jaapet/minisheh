@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/24 19:58:40 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/25 19:53:23 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
-
+# define BASH_NAME_ERR	"minisheh: "
 # include "libft/includes/libft.h"
 // TEMPORARY
 # define ERR_DUMMY 1
@@ -80,5 +80,7 @@ void	ft_export(t_ms *ms, char **cmd);
 void	ft_unset(t_ms *ms, char **cmd);
 //BUILTIN UTILS
 char 	**ft_dup_env(char **envp);
-bool	ft_is_in_env(t_ms *ms, char *varname);
+// bool	ft_is_in_env(t_ms *ms, char *varname);
+//UTILS
+void ft_printf_err(char* bin_name, char* args, char* err_msg);
 #endif

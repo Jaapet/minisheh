@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:51:59 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/24 20:03:28 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/25 20:17:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ void	ft_unset(t_ms *ms, char **cmd)
 	i = 1;
 	while (cmd[i])
 	{
-		//check syntax before, pas de =
-		ft_rm_env(ms, cmd[i]);
+		if (ft_var_syntax("unset", cmd[i]) == TRUE)
+		{
+			ft_rm_env(ms, cmd[i]);
+		}
 		i++;
 	}
 	

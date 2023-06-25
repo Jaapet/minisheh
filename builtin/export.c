@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:37:03 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/24 20:25:26 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/25 20:05:21 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ static void	ft_export_list(char **envp)
 	}
 }
 
-// impossible d'assigner a null (JULEN)
-// Si export A=42
-// export A ne marchera pas
+//NE GERE PAS LA CONCAT (ex: A+=42)
 void	ft_export(t_ms *ms, char **cmd)
 {
 	size_t i;
@@ -54,10 +52,12 @@ void	ft_export(t_ms *ms, char **cmd)
 		i = 1;
 		while (cmd[i])
 		{
-			//ft_syntax
-			if (ft_is_in_env(ms, cmd[i]) == FALSE)
+			if (ft_var_syntax("export", cmd[i]) == FALSE)
+				temp = NULL;
+			else if (ft_var_in_env(ms->envp, cmd[i]) == FALSE)
 				ft_add_env(ms, cmd[i]);
-			else if (ft_is_in_env(ms, cmd[i]) == TRUE && ft_strchr(cmd[i], '=') != NULL)
+			else if (ft_var_in_env(ms->envp, cmd[i]) == TRUE &&
+			ft_strchr(cmd[i], '=') != NULL)
 			{
 				temp = ft_isolate_var(cmd[i]);
 				ft_rm_env(ms, temp);

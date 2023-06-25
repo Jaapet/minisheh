@@ -6,11 +6,11 @@
 #    By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/11 17:43:32 by ggualerz          #+#    #+#              #
-#    Updated: 2023/06/24 18:54:18 by ggualerz         ###   ########.fr        #
+#    Updated: 2023/06/25 19:53:34 by ggualerz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES  = 	main.c \
+SOURCES  = 	main.c utils.c\
 			exec/exec.c exec/exec_utils.c exec/exec_redir.c exec/exec_fd.c exec/exec_fork.c\
 			sexy/sexy.c\
 			builtin/pwd.c builtin/cd.c builtin/echo.c builtin/env.c builtin/export.c builtin/utils.c builtin/unset.c
