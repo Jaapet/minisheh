@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 18:00:11 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/06/19 18:08:51 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:33:33 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@ char	update_quote(char quote, char cur)
 	return (quote);
 }
 
-static int	count_cmds(char *line)
+static int	iterate(char *quote, char cur)
+{
+	*quote = update_quote(*quote, cur);
+	return (1);
+}
+
+static int	count(char *str)
 {
 	int		i;
 	int		count;
@@ -30,68 +36,68 @@ static int	count_cmds(char *line)
 	i = 0;
 	count = 0;
 	quote = 0;
-	while (line[i])
+	while (str[i])
 	{
-		quote = update_quote(quote, line[i]);
-		if (line[i] == '|' && !quote && line[i])
+		if ((str[i] != ' ' || quote) && str[i])
+		{
+			while ((str[i] != ' ' || quote) && str[i])
+				i += iterate(&quote, str[i]);
 			count++;
-		i++;
+		}
+		while (str[i] == ' ' && !quote && str[i])
+			i += iterate(&quote, str[i]);
 	}
-	return (count + 1);
+	return (count);
 }
 
-static char	*cut_cmd(char *line)
+static char	*cut_word(char *line)
 {
 	int		i;
-	char	*cmd;
 	char	quote;
+	char	*word;
 
 	i = 0;
 	quote = 0;
-	while ((line[i] != '|' || quote) && line[i])
-	{
-		quote = update_quote(quote, line[i]);
-		i++;
-	}
-	cmd = malloc(sizeof(char) * (i + 1));
-	if (cmd == NULL)
+	while ((line[i] != ' ' || quote) && line[i])
+		i += iterate(&quote, line[i]);
+	word = ft_calloc(i + 1, sizeof(char));
+	if (!word)
 		return (NULL);
 	i = 0;
-	while ((line[i] != '|' || quote) && line[i])
+	quote = 0;
+	while ((line[i] != ' ' || quote) && line[i])
 	{
-		quote = update_quote(quote, line[i]);
-		cmd[i] = line[i];
-		i++;
+		word[i] = line[i];
+		i += iterate(&quote, line[i]);
 	}
-	cmd[i] = '\0';
-	return (cmd);
+	return (word);
 }
 
-char	**split_line(char *line)
+char	**split_line(char *str)
 {
 	char	**list;
-	int		i;
 	char	quote;
+	int		i;
 
 	i = 0;
 	quote = 0;
-	list = ft_calloc((count_cmds(line) + 1), sizeof(char *));
+	list = ft_calloc((count(str) + 1), sizeof(char *));
 	if (list == NULL)
 		return (NULL);
-	while (*line)
+	while (*str)
 	{
-		list[i] = cut_cmd(line);
-		i++;
-		while ((*line != '|' || quote) && *line)
+		if ((*str != ' ' || quote) && *str)
 		{
-			quote = update_quote(quote, *line);
-			line++;
+			list[i] = cut_word(str);
+			if (!list[i])
+				return (NULL);
+			i++;
+			while ((*str != ' ' || quote) && *str)
+				str += iterate(&quote, *str);
 		}
-		if (*line == '|' && !quote && *line)
-			line++;
+		while (*str == ' ' && !quote && *str)
+			str += iterate(&quote, *str);
 	}
-	if (*(line - 1) == '|' && !quote)
-		list[i] = cut_cmd(line - 1);
 	return (list);
 }
 
@@ -100,5 +106,4 @@ char	**split_line(char *line)
 // 	printf("%d\n", count(argv[1]));
 // 	char **list = split_line(argv[1]);
 // 	printf("%s\n%s\n%s\n%s\n%s\n%s\n", list[0], list[1], list[2], list[3], list[4], list[5]);
-// 	printf("c : %c\n", *(argv[1]+1));
 // }
