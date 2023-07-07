@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/29 17:39:54 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/07 20:25:44 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 // type enum
 typedef enum e_type
 {
-	pipe,
+	is_pipe,
 	si_redir,
 	di_redir,
 	so_redir,
@@ -47,12 +47,13 @@ typedef struct s_cmd
 	char			*word;
 	t_type			type;
 	struct s_cmd	*next;
+	struct s_cmd	*prev;
 }	t_cmd;
 
 // MINISHELL SUPER STRUCTURE
 typedef struct s_ms
 {
-	t_node	*node_lst;
+	//t_node	*node_lst;
 	char	**envp;
 	size_t	node_nb;
 	int		*pipes;
@@ -64,6 +65,6 @@ void	ft_exec(t_ms *ms, char **envp);
 void	ft_banner(void);
 char *ft_prompt_str (char **env);
 // PARSING
-t_node	*parse(char *line);
+//t_node	*parse(char *line);
 
 #endif
