@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:28:00 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/08 16:41:25 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:51:42 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ static char	**proc(char *word)
 	return (list);
 }
 
-static void	add_back(t_cmd **list, char *word)
+static void	add_back(t_cmd **list, char *word, char **env)
 {
 	t_cmd	*new;
 	t_cmd	*temp;
 
 	temp = *list;
 	if (!temp->word)
-		temp->word = proc_quote(word);
+		temp->word = proc_quote(word, env);
 	else
 	{
 		new = ft_calloc(1, sizeof(t_cmd));
@@ -51,23 +51,23 @@ static void	add_back(t_cmd **list, char *word)
 			temp = temp->next;
 		temp->next = new;
 		new->prev = temp;
-		new->word = proc_quote(word);
+		new->word = proc_quote(word, env);
 	}
 }
 
-static void	add_cmd(t_cmd **list, char **words)
+static void	add_cmd(t_cmd **list, char **words, char **env)
 {
 	int	i;
 
 	i = 0;
 	while (words[i])
 	{
-		add_back(list, words[i]);
+		add_back(list, words[i], env);
 		i++;
 	}
 }
 
-static t_cmd	*proc_cmds(char **cmds)
+static t_cmd	*proc_cmds(char **cmds, char **env)
 {
 	t_cmd	*list;
 	int		i;
@@ -76,13 +76,13 @@ static t_cmd	*proc_cmds(char **cmds)
 	list = ft_calloc(1, sizeof(t_cmd));
 	while (cmds[i])
 	{
-		add_cmd(&list, proc(cmds[i]));
+		add_cmd(&list, proc(cmds[i]), env);
 		i++;
 	}
 	return (list);
 }
 
-t_cmd	*parse(char *line)
+t_cmd	*parse(char *line, char **env)
 {
 	char	**cmds;
 	t_cmd	*list;
@@ -90,7 +90,7 @@ t_cmd	*parse(char *line)
 	cmds = split_line(line);
 	if (!cmds)
 		return (NULL);
-	list = proc_cmds(cmds);
+	list = proc_cmds(cmds, env);
 	if (!list)
 		return (NULL);
 	return (list);

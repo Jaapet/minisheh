@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/07 20:25:44 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/08 17:48:19 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 // type enum
 typedef enum e_type
 {
+	undefined,
 	is_pipe,
 	si_redir,
 	di_redir,
