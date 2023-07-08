@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/25 19:53:23 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/07 20:50:42 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char *ft_prompt_str (char **env);
 t_node	*parse(char *line);
 //BUILTIN
 void	ft_pwd(void);
-void	ft_cd(char *path);
+void	ft_cd(char *path, t_ms *ms);
 void 	ft_echo(char **cmd);
 void	ft_env(t_ms *ms);
 void	ft_export(t_ms *ms, char **cmd);

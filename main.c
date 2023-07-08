@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:36:47 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/25 20:17:44 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/07 20:50:24 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int main(int ac, char **av, char **env)
 			ft_unset(ms, cmd2);
 		else // cd
 		{
-			ft_cd(rl);
+			ft_cd(rl, ms);
 		}
 	}
 	//ft_exec(ms, env);

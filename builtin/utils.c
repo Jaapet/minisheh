@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:40:23 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/25 20:18:15 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/07 23:55:55 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,29 @@ bool	ft_var_in_env(char **env, char *var)
 	}
 	return (free(varname), FALSE);
 }
+// return with the full line, NULL if the var is not present
+char	*ft_get_env_value(char **env, char *var)
+{
+	size_t i;
+	char	*varname;
+
+	i = 0;
+	if (ft_strchr(var, '=') != NULL)
+		varname = ft_isolate_var(var);
+	else
+		varname = ft_strdup(var);
+	while (env[i])
+	{
+		if (ft_strncmp(env[i], varname, ft_strlen(varname)) == 0 &&
+		env[i][ft_strlen(varname)] == '=')
+			return (free(varname), env[i]);
+		else if (ft_strncmp(env[i], varname, ft_strlen(varname)) == 0 &&
+		env[i][ft_strlen(varname)] == '\0')
+			return (free(varname), env[i]);
+		i++;
+	}
+	return (free(varname), NULL);
+}
 // bool	ft_is_in_env(t_ms *ms, char *varname)
 // {
 // 	size_t i;
@@ -183,7 +206,11 @@ char	*ft_isolate_var(char *full_var)
 		*to_rm = '\0';
 	return (out);
 }
-// bool	ft_syntax(char *cmd)
+char	*ft_isolate_val(char *full_var)
+{
+	return (ft_strdup(ft_strchr(full_var, '=') + 1));
+}
+// bool	ft_syntax(char *cmd)   
 // {
 // 	L'identifiant doit commencer par une lettre (a-z ou A-Z).
 // Les caractères suivants peuvent être des lettres (a-z ou A-Z), des chiffres (0-9) ou le caractère souligné (_).
