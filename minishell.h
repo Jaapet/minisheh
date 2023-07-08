@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/07 20:50:42 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:08:48 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,41 +29,37 @@
 // BOOL
 # define TRUE 1
 # define FALSE 0
-// Redir enum
-enum	e_redir
+// type enum
+typedef enum e_type
 {
-	no_redir,
-	in_simple,
-	in_double,
-	out_simple,
-	out_double
-};
-// Redir elem
-typedef struct s_redir
+	is_pipe,
+	si_redir,
+	di_redir,
+	so_redir,
+	do_redir,
+	file,
+	command,
+	arg
+}	t_type;
+
+typedef struct s_cmd
 {
-	enum e_redir	type; //n
-	char			*file; //n si un here_doc, mettre le fichier heredoc voir avec g
-}	t_redir;
-// NODE OF t_ms.node_lst
-typedef struct s_node
-{
-	size_t			index; //g
-	char			**cmd; //n
-	t_redir			*redir;
-	pid_t			pid; //g
-	int				fd_i; //g
-	int				fd_o; //g
-	struct s_node	*next; //n
-}	t_node;
+	char			*word;
+	t_type			type;
+	struct s_cmd	*next;
+	struct s_cmd	*prev;
+}	t_cmd;
+
 // MINISHELL SUPER STRUCTURE
 typedef struct s_ms
 {
-	t_node	*node_lst;
+	//t_node	*node_lst;
 	char	**envp;
 	size_t	node_nb;
 	int		*pipes;
 	char	*prompt;
 }	t_ms;
+
 // EXEC
 void	ft_exec(t_ms *ms, char **envp);
 // SEXY
