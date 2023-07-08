@@ -6,16 +6,12 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:28:00 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/08 00:46:57 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/08 16:41:25 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-// char	*proc_word(char *word, int i, int last_op);
-// char	**proc_pipe(char **list, char *word, int *i, int *last_op);
-// char	**proc_redir(char **list, char *word, int *i, int *last_op);
-// char	**lst_add(char **list, char *word);
-// char	update_quote(char quote, char cur);
+
 static char	**proc(char *word)
 {
 	int		i;
@@ -47,15 +43,15 @@ static void	add_back(t_cmd **list, char *word)
 
 	temp = *list;
 	if (!temp->word)
-		temp->word = /*proc_quote(word)*/word;
+		temp->word = proc_quote(word);
 	else
 	{
-	new = ft_calloc(1, sizeof(t_cmd));	
-	while (temp->next)
-		temp = temp->next;
-	temp->next = new;
-	new->prev = temp;
-	new->word = /*proc_quote(word)*/word;
+		new = ft_calloc(1, sizeof(t_cmd));
+		while (temp->next)
+			temp = temp->next;
+		temp->next = new;
+		new->prev = temp;
+		new->word = proc_quote(word);
 	}
 }
 
@@ -94,7 +90,6 @@ t_cmd	*parse(char *line)
 	cmds = split_line(line);
 	if (!cmds)
 		return (NULL);
-	printf("%s, %s, %s, %s, %s\n", cmds[0], cmds[1], cmds[2], cmds[3], cmds[4]);
 	list = proc_cmds(cmds);
 	if (!list)
 		return (NULL);
@@ -117,5 +112,5 @@ t_cmd	*parse(char *line)
 
 // 	clist = parse("e\"cho\" toto << yop > a.txt | e'cho titi'");
 // 	ft_lstprint(clist);
-// 	//system ("leaks a.out");
+// 	system ("leaks minishell");
 // }
