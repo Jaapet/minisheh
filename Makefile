@@ -6,20 +6,33 @@
 #    By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/11 17:43:32 by ggualerz          #+#    #+#              #
-#    Updated: 2023/06/11 20:18:36 by ggualerz         ###   ########.fr        #
+#    Updated: 2023/06/25 19:53:34 by ggualerz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES  = 	main.c \
-			exec/exec.c exec/exec_utils.c exec/exec_redir.c exec/exec_fd.c exec/exec_fork.c
+SOURCES  = 	main.c utils.c\
+			exec/exec.c exec/exec_utils.c exec/exec_redir.c exec/exec_fd.c exec/exec_fork.c\
+			sexy/sexy.c\
+			builtin/pwd.c builtin/cd.c builtin/echo.c builtin/env.c builtin/export.c builtin/utils.c builtin/unset.c
+			# parsing/parser.c parsing/line_splitter.c
 NAME     = minishell
 OBJECTS  = ${SOURCES:.c=.o}
 
 LIBFT_PATH = ./libft
 LIBFT      = $(LIBFT_PATH)/libft.a
 
-CFLAGS     = -Wall -Wextra -Werror -g -fdiagnostics-color=always
-LDFLAGS    = -L${LIBFT_PATH} -lft
+CFLAGS     = -Wall -Wextra -Werror -g -fdiagnostics-color=always 
+LDFLAGS    = -L${LIBFT_PATH} -lft -lreadline
+
+READLINE_INSTALLED := $(shell brew list --formula | grep -q '^readline$$' && echo 1)
+
+ifeq ($(READLINE_INSTALLED),1)
+    # Readline is installed
+    # Add necessary flags or commands here
+else
+    # Readline is not installed
+    $(error "Readline is not installed. Please install it using Homebrew.")
+endif
 
 .c.o:
 	gcc $(CFLAGS) -c $< -o ${<:.c=.o}
