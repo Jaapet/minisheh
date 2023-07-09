@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/08 17:48:19 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/09 19:56:22 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ typedef enum e_type
 	di_redir,
 	so_redir,
 	do_redir,
-	file,
-	command,
-	arg
+	is_file,
+	is_command,
+	is_arg
 }	t_type;
 
 typedef struct s_cmd

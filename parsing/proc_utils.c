@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:13:57 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/08 00:38:19 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/09 19:35:24 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ char	*proc_word(char *word, int i, int last_op)
 		}
 		else
 			new = ft_calloc(i - last_op + 1, sizeof(char));
+		if (!last_op && i > 1 && is_op(word[0]) && redir_ok(word[0], word[1]))
+			last_op++;
 		if (!new)
 			return (NULL);
 		j = 0;
@@ -64,21 +66,26 @@ char	*proc_word(char *word, int i, int last_op)
 			last_op++;
 		}
 	}
+	else
+		return (NULL);
 	return (new);
 }
 
 char	**proc_pipe(char **list, char *word, int *i, int *last_op)
 {
-	if (*i)
+	if (*i && *i > (*last_op) + 1)
 		list = lst_add(list, proc_word(word, *i, *last_op));
-	list = lst_add(list, proc_word(word, *i + 1, *i - 1));
+	// if (word[(*i) - 1] == '|')
+	// 	list = lst_add(list, proc_word(word, *i + 1, *i));
+	//else
+		list = lst_add(list, proc_word(word, *i + 1, *i - 1));
 	*last_op = *i;
 	return (list);
 }
 
 char	**proc_redir(char **list, char *word, int *i, int *last_op)
 {
-	if (*i)
+	if (*i && *i > (*last_op) + 1)
 		list = lst_add(list, proc_word(word, *i, *last_op));
 	if ((word[*i] == '>' && word[(*i) + 1] == '>')
 		|| (word[*i] == '<' && word[(*i) + 1] == '<'))

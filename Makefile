@@ -6,18 +6,18 @@
 #    By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/11 17:43:32 by ggualerz          #+#    #+#              #
-#    Updated: 2023/07/09 15:40:15 by ndesprez         ###   ########.fr        #
+#    Updated: 2023/07/09 20:28:01 by ndesprez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES  = 	parsing/parser.c parsing/proc_utils.c parsing/line_splitter.c parsing/word_utils.c parsing/env_utils.c
+SOURCES  = 	parsing/parser.c parsing/proc_utils.c parsing/line_splitter.c parsing/word_utils.c parsing/env_utils.c parsing/tokenizer.c parsing/token_utils.c parsing/utils.c
 NAME     = minishell
 OBJECTS  = ${SOURCES:.c=.o}
 
 LIBFT_PATH = ./libft
 LIBFT      = $(LIBFT_PATH)/libft.a
 
-CFLAGS     = -g -fdiagnostics-color=always 
+CFLAGS     = -Wall -Wextra -Werror -g -fdiagnostics-color=always
 LDFLAGS    = -L${LIBFT_PATH} -lft -lreadline
 
 # READLINE_INSTALLED := $(shell brew list --formula | grep -q '^readline$$' && echo 1)
