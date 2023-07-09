@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 14:41:02 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/14 17:21:37 by ndesprez         ###   ########.fr       */
+/*   Created: 2023/07/09 17:56:18 by ndesprez          #+#    #+#             */
+/*   Updated: 2023/07/09 20:40:59 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "parser.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	set_type(t_lex *word, t_type type)
 {
-	size_t	i;
-
-	if (n == 0)
-		return (dst);
-	if (dst == NULL && src == NULL)
-		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
-		i++;
-	}
-	return (dst);
+	word->type = type;
 }

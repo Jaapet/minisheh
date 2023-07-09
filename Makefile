@@ -6,7 +6,7 @@
 #    By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/11 17:43:32 by ggualerz          #+#    #+#              #
-#    Updated: 2023/07/09 18:07:18 by ggualerz         ###   ########.fr        #
+#    Updated: 2023/07/09 20:54:40 by ggualerz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,5 +52,7 @@ clean:
 fclean: clean
 	make -C $(LIBFT_PATH) fclean
 	rm -f $(NAME)
+
+re: fclean all
 
 re: fclean all

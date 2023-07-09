@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 20:37:27 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/09 20:53:55 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,28 +78,8 @@ typedef struct s_ms
 	char	**envp;
 	size_t	cmd_nb;
 	int		*pipes;
-	char	*prompt;
 }	t_ms;
 
-// EXEC
-void	ft_exec(t_ms *ms, char **envp);
-// SEXY
-void	ft_banner(void);
-char *ft_prompt_str (char **env);
-//BUILTIN
-int	ft_pwd(void);
-int	ft_cd(char *path, t_ms *ms);
-int ft_echo(char **cmd);
-int	ft_env(t_ms *ms);
-int	ft_export(t_ms *ms, char **cmd);
-int	ft_unset(t_ms *ms, char **cmd);
-void	ft_builtin_exit(t_ms *ms, char *cmd);
-//BUILTIN UTILS
-char 	**ft_dup_env(char **envp);
-// bool	ft_is_in_env(t_ms *ms, char *varname);
-//UTILS
-void ft_printf_err(char* bin_name, char* args, char* err_msg);
-char *ft_str_tolower(char *str);
-//CLEAN
-void ft_clean_tab(char **tab);
+
+
 #endif
