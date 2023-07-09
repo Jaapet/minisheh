@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/08 18:08:48 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/09 20:37:27 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,51 @@
 // type enum
 typedef enum e_type
 {
+	undefined,
 	is_pipe,
 	si_redir,
 	di_redir,
 	so_redir,
 	do_redir,
-	file,
-	command,
-	arg
+	is_file,
+	is_command,
+	is_arg
 }	t_type;
-
-typedef struct s_cmd
+// Lexer chain list
+typedef struct s_lex
 {
 	char			*word;
 	t_type			type;
-	struct s_cmd	*next;
-	struct s_cmd	*prev;
-}	t_cmd;
-
+	struct s_lex	*next;
+	struct s_lex	*prev;
+}	t_lex;
+// Redir struct
+typedef struct s_redir
+{
+	size_t	index;
+	char	*arg;
+	t_type	type;
+} t_redir;
+// Exec chain list
+typedef struct s_exe
+{
+	size_t			index; //g
+	bool			is_builtin; // flag qui defini si c'est un builtin
+	bool			env_related; //flag qui defini en gros si ca doit etre forke lors d'une seule commande
+	char			**cmd; //n
+	t_redir			*redir; // array de redirection terminant par null
+	pid_t			pid; //g
+	int				fd_i; //g
+	int				fd_o; //g
+	struct s_exe	*next; //n
+}	t_exe;
 // MINISHELL SUPER STRUCTURE
 typedef struct s_ms
 {
-	//t_node	*node_lst;
+	t_lex	*lex_first; //list chaine du lexer
+	t_exe	*exe_first; //list chainee des exe
 	char	**envp;
-	size_t	node_nb;
+	size_t	cmd_nb;
 	int		*pipes;
 	char	*prompt;
 }	t_ms;
@@ -65,18 +86,20 @@ void	ft_exec(t_ms *ms, char **envp);
 // SEXY
 void	ft_banner(void);
 char *ft_prompt_str (char **env);
-// PARSING
-t_node	*parse(char *line);
 //BUILTIN
-void	ft_pwd(void);
-void	ft_cd(char *path, t_ms *ms);
-void 	ft_echo(char **cmd);
-void	ft_env(t_ms *ms);
-void	ft_export(t_ms *ms, char **cmd);
-void	ft_unset(t_ms *ms, char **cmd);
+int	ft_pwd(void);
+int	ft_cd(char *path, t_ms *ms);
+int ft_echo(char **cmd);
+int	ft_env(t_ms *ms);
+int	ft_export(t_ms *ms, char **cmd);
+int	ft_unset(t_ms *ms, char **cmd);
+void	ft_builtin_exit(t_ms *ms, char *cmd);
 //BUILTIN UTILS
 char 	**ft_dup_env(char **envp);
 // bool	ft_is_in_env(t_ms *ms, char *varname);
 //UTILS
 void ft_printf_err(char* bin_name, char* args, char* err_msg);
+char *ft_str_tolower(char *str);
+//CLEAN
+void ft_clean_tab(char **tab);
 #endif

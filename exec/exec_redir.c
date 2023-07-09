@@ -6,33 +6,72 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:11:10 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/19 17:37:26 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/09 20:36:11 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
+static int ft_open_heredoc(char *delim)
+{
+	int	temp_fd;
+	char	*buf;
+	
+	temp_fd = open("/tmp/.heredoc_minishell", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
+	if (temp_fd < 0)
+	{}
+		//KILL
+	while(1)
+	{
+		write(1, "heredoc> ", 10);
+		buf = get_next_line(0);
+		if (ft_strncmp(delim, buf, ft_strlen(delim)) == 0)
+			break ;
+		write(temp_fd, buf, ft_strlen(buf));
+		free(buf);
+	}
+	free(buf);
+	close(temp_fd);
+	return(open("/tmp/.heredoc_minishell", O_RDONLY));
+}
+
 void	ft_set_redir(t_ms *ms)
 {
-	t_node	*lst;
+	t_exe	*lst;
 	size_t	i;
 
 	i = 0;
-	lst = ms->node_lst;
+	lst = ms->exe_first;
 	while (lst)
 	{
-		if (lst->redir)
+		if (lst->redir->type != undefined)
 		{
-			while (lst->redir + i)
+			while ((lst->redir + i)->type != 0)
 			{
-				if (lst->redir[i].type == in_simple)
-					lst->fd_i = open(lst->redir[i].file, FLAG_INFILE_STD);
-				else if (lst->redir[i].type == in_double)
-					lst->fd_i = open(lst->redir[i].file, FLAG_INFILE_STD); //HERE_DOC
-				else if (lst->redir[i].type == out_simple)
-					lst->fd_o = open(lst->redir[i].file, FLAG_OUTFILE_STD, 0000644);
-				else if (lst->redir[i].type == out_double)
-					lst->fd_o = open (lst->redir[i].file, FLAG_OUTFILE_APPEND, 0000644);
+				if (lst->redir[i].type == si_redir)
+				{
+					if (lst->fd_i != 0)
+						close(lst->fd_i);
+					lst->fd_i = open(lst->redir[i].arg, FLAG_INFILE_STD);
+				}
+				else if (lst->redir[i].type == di_redir)
+				{
+					if (lst->fd_i != 0)
+						close(lst->fd_i);
+					lst->fd_i = ft_open_heredoc(lst->redir[i].arg); //HERE_DOC
+				}
+				else if (lst->redir[i].type == so_redir)
+				{
+					if (lst->fd_o != 0)
+						close(lst->fd_o);
+					lst->fd_o = open(lst->redir[i].arg, FLAG_OUTFILE_STD, 0000644);
+				}
+				else if (lst->redir[i].type == do_redir)
+				{
+					if (lst->fd_o != 0)
+						close(lst->fd_o);
+					lst->fd_o = open (lst->redir[i].arg, FLAG_OUTFILE_APPEND, 0000644);
+				}
 				i++;
 			}
 		}

@@ -6,15 +6,15 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:00:52 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/11 20:08:14 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/09 14:11:21 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-t_node	*ft_get_node(t_node *fnode, size_t i)
+t_exe	*ft_get_node(t_exe *fnode, size_t i)
 {
-	t_node	*cnode;
+	t_exe	*cnode;
 	
 	cnode = fnode;
 	while (cnode != NULL && cnode->index != i)
@@ -26,12 +26,12 @@ void	ft_init_pipes(t_ms *ms)
 {
 	size_t	i;
 
-	ms->pipes= ft_calloc((ms->node_nb) * 2, sizeof(int));
+	ms->pipes= ft_calloc((ms->cmd_nb) * 2, sizeof(int));
 	if (ms->pipes == NULL)
 		{}
 		//ft_exit(ERR_DUMMY, ms);
 	i = 0;
-	while (i < (ms->node_nb) * 2)
+	while (i < (ms->cmd_nb) * 2)
 	{
 		if (pipe(ms->pipes + i) < 0)
 		{}
@@ -51,7 +51,7 @@ void	ft_close_pipes(t_ms *ms)
 	}
 }
 
-void	ft_lst_set_index(t_node *lst)
+void	ft_lst_set_index(t_exe *lst)
 {
 	size_t	i;
 
@@ -65,7 +65,7 @@ void	ft_lst_set_index(t_node *lst)
 		i++;
 	}
 }
-size_t	ft_lst_size(t_node *lst)
+size_t	ft_lst_size(t_exe *lst)
 {
 	size_t	i;
 

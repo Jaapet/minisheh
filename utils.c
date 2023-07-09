@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 19:32:20 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/25 19:48:36 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/09 16:41:02 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,23 @@ void ft_printf_err(char* bin_name, char* args, char* err_msg)
 	printf("%s",buff);
 	free(buff);
     dup2(original_stderr, STDERR_FILENO);
+}
+
+char *ft_str_tolower(char *str)
+{
+	char *out_str;
+	size_t str_len;
+	size_t i;
+
+	str_len = ft_strlen(str);
+	out_str = ft_calloc(str_len, sizeof(char));
+	if (out_str == NULL)
+		return (NULL);
+	i = 0;
+	while (i < str_len)
+	{
+		out_str[i] = ft_tolower(str[i]);
+		i++;
+	}
+	return (out_str);
 }

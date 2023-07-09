@@ -6,13 +6,13 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:24 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/07 21:37:36 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/09 16:58:08 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-void	ft_cd(char *path, t_ms *ms)
+int	ft_cd(char *path, t_ms *ms)
 {
 	char	*export_cmd[3];
 	char	*temp;
@@ -39,4 +39,5 @@ void	ft_cd(char *path, t_ms *ms)
 		ft_export(ms, export_cmd);
 		free(export_cmd[1]);
 	}
+	return (0);
 }

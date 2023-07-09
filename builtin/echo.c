@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 19:00:12 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/19 21:03:54 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/09 16:59:30 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static	bool	ft_parse_flag(char *str)
 	return (TRUE);
 }
 
-void ft_echo(char **cmd)
+int ft_echo(char **cmd)
 {
 	size_t	i;
 	bool	is_n;
@@ -80,4 +80,5 @@ void ft_echo(char **cmd)
 	printf("%s", out);
 	if (out != NULL)
 		free(out);
+	return (0);
 }

@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 20:07:03 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 16:59:38 by ggualerz         ###   ########.fr       */
+/*   Created: 2023/07/09 15:43:48 by ggualerz          #+#    #+#             */
+/*   Updated: 2023/07/09 16:05:27 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtin.h"
+#include "minishell.h"
 
-int	ft_env(t_ms *ms) // probleme $_ non mis a jour
+void ft_clean_tab(char **tab)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
-	while (ms->envp[i])
+	while (tab[i])
 	{
-		if (ft_strchr(ms->envp[i], '=') != NULL)
-			printf("%s\n",ms->envp[i]);
+		free(tab[i]);
 		i++;
 	}
-	return (0);
+	free(tab);
 }
