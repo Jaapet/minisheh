@@ -6,13 +6,13 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:56:18 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/09 19:47:51 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/09 20:40:59 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	set_type(t_cmd *word, t_type type)
+void	set_type(t_lex *word, t_type type)
 {
 	word->type = type;
 }

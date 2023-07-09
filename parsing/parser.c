@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:28:00 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/09 18:24:34 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/09 20:40:59 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ static char	**proc(char *word)
 	return (list);
 }
 
-static void	add_back(t_cmd **list, char *word, char **env)
+static void	add_back(t_lex **list, char *word, char **env)
 {
-	t_cmd	*new;
-	t_cmd	*temp;
+	t_lex	*new;
+	t_lex	*temp;
 
 	temp = *list;
 	if (!temp->word)
 		temp->word = proc_quote(word, env);
 	else
 	{
-		new = ft_calloc(1, sizeof(t_cmd));
+		new = ft_calloc(1, sizeof(t_lex));
 		while (temp->next)
 			temp = temp->next;
 		temp->next = new;
@@ -56,7 +56,7 @@ static void	add_back(t_cmd **list, char *word, char **env)
 	}
 }
 
-static void	add_cmd(t_cmd **list, char **words, char **env)
+static void	add_cmd(t_lex **list, char **words, char **env)
 {
 	int	i;
 
@@ -68,13 +68,13 @@ static void	add_cmd(t_cmd **list, char **words, char **env)
 	}
 }
 
-static t_cmd	*proc_cmds(char **cmds, char **env)
+static t_lex	*proc_cmds(char **cmds, char **env)
 {
-	t_cmd	*list;
+	t_lex	*list;
 	int		i;
 
 	i = 0;
-	list = ft_calloc(1, sizeof(t_cmd));
+	list = ft_calloc(1, sizeof(t_lex));
 	while (cmds[i])
 	{
 		add_cmd(&list, proc(cmds[i]), env);
@@ -83,10 +83,10 @@ static t_cmd	*proc_cmds(char **cmds, char **env)
 	return (list);
 }
 
-t_cmd	*parse(char *line, char **env)
+t_lex	*parse(char *line, char **env)
 {
 	char	**cmds;
-	t_cmd	*list;
+	t_lex	*list;
 	//if (!line) error
 	cmds = split_line(line);
 	if (!cmds)
@@ -98,7 +98,7 @@ t_cmd	*parse(char *line, char **env)
 	return (list);
 }
 
-// void	ft_lstprint(t_cmd *lst)
+// void	ft_lstprint(t_lex *lst)
 // {
 // 	while (lst)
 // 	{
@@ -110,7 +110,7 @@ t_cmd	*parse(char *line, char **env)
 
 // int	main(int argc, char **argv)
 // {
-// 	t_cmd	*clist;
+// 	t_lex	*clist;
 // 	char	*env[3];
 
 // 	env[0] = "e=/bin/echo";

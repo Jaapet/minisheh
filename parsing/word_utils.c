@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 15:14:53 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/09 17:08:57 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/09 20:42:47 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static char	*rem_quotes(char *word, int count)
 
 static char	*expand(char *word, char **env)
 {
-	char	*new;
 	char	*var;
 	int		i;
 	int		j;

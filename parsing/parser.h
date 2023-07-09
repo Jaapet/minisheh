@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:27:51 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/09 19:36:15 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/09 20:40:59 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ char	*proc_quote(char *word, char **env);
 int		is_valid_char(char c);
 char	*set_var(char *word, int beg, int size, char **env);
 char	*replace_var(char *word, char *var, int beg, int size);
-void	tokenize(t_cmd **list);
-void	set_type(t_cmd *word, t_type type);
+void	tokenize(t_lex **list);
+void	set_type(t_lex *word, t_type type);
 int		is_op(char c);
 int		redir_ok(char a, char b);
 
-t_cmd	*parse(char *line, char **env);
+t_lex	*parse(char *line, char **env);
 
 #endif

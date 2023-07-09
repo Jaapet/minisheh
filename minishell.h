@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 19:56:22 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/09 20:40:59 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ typedef enum e_type
 	is_arg
 }	t_type;
 
-typedef struct s_cmd
+typedef struct s_lex
 {
 	char			*word;
 	t_type			type;
-	struct s_cmd	*next;
-	struct s_cmd	*prev;
-}	t_cmd;
+	struct s_lex	*next;
+	struct s_lex	*prev;
+}	t_lex;
 
 // MINISHELL SUPER STRUCTURE
 typedef struct s_ms
