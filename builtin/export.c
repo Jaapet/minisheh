@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:37:03 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/25 20:05:21 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/09 16:59:50 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	ft_export_list(char **envp)
 }
 
 //NE GERE PAS LA CONCAT (ex: A+=42)
-void	ft_export(t_ms *ms, char **cmd)
+int	ft_export(t_ms *ms, char **cmd)
 {
 	size_t i;
 	char	*temp;
@@ -67,4 +67,5 @@ void	ft_export(t_ms *ms, char **cmd)
 			i++;
 		}
 	}
+	return (0);
 }

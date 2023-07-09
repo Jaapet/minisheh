@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:01:53 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/11 21:59:37 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/09 15:49:22 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 /* UTILS */
 void	ft_init_pipes(t_ms *ms);
 void	ft_close_pipes(t_ms *ms);
-void	ft_lst_set_index(t_node *lst);
-t_node	*ft_get_node(t_node *fnode, size_t i);
-size_t	ft_lst_size(t_node *lst);
+void	ft_lst_set_index(t_exe *lst);
+t_exe	*ft_get_node(t_exe *fnode, size_t i);
+size_t	ft_lst_size(t_exe *lst);
 /* FD */
 void	ft_assign_fd(t_ms *ms);
 /* REDIR */
@@ -30,4 +30,8 @@ void	ft_set_redir(t_ms *ms);
 void	ft_fork(t_ms *ms, char **envp, size_t cmd_i);
 /* EXEC */
 void	ft_exec(t_ms *ms, char **envp);
+/* PATH */
+char	**ft_parse_path(t_ms *ms);
+/* ACCESS */
+void ft_acess_cmd(t_ms *ms);
 #endif

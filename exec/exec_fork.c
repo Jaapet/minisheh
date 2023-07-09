@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:16:18 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/06/11 22:03:28 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/09 18:09:22 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,41 @@ static void	ft_dup2(int fd_in, int fd_out, t_ms *ms)
 	// 	ft_exit(ERR_DUP, ms);
 	ft_close_pipes(ms);
 }
+static int ft_exec_builtin(t_ms *ms, char **cmd)
+{
+	if(ft_strncmp(cmd[0], "cd", 3)== 0)
+		return(ft_cd(cmd[0], ms));
+	else if((ft_strncmp(cmd[0], "echo", 5) == 0))
+		return(ft_echo(cmd));
+	else if (ft_strncmp(cmd[0], "env", 4) == 0)
+		return (ft_env(ms));
+	else if (ft_strncmp(cmd[0], "pwd", 4) == 0)
+		return (ft_pwd());
+	else if (ft_strncmp(cmd[0], "export", 7) == 0)
+		return (ft_export(ms, cmd));
+	else if (ft_strncmp(cmd[0], "unset", 6) == 0)
+		return (ft_unset(ms, cmd));
+	else if (ft_strncmp(cmd[0], "exit", 5) == 0)
+		return (ft_builtin_exit(ms, cmd[0]), ft_atoi(cmd[0]));
+	return (0);
+}
 void	ft_fork(t_ms *ms, char **envp, size_t cmd_i)
 {	
-	t_node	*cur_node;
+	t_exe	*cur_node;
 
-	cur_node = ft_get_node(ms->node_lst, cmd_i);
+	cur_node = ft_get_node(ms->exe_first, cmd_i);
+	if (cur_node->env_related == TRUE && ms->cmd_nb == 1)
+		ft_exec_builtin(ms, cur_node->cmd);
 	cur_node->pid = fork();
 	// if (p->pid[cmd_i] < 0)
 	// 	ft_exit(ERR_FORK, p);
 	if (cur_node->pid == 0)
 	{
 		ft_dup2(cur_node->fd_i, cur_node->fd_o, ms);
-		execve(cur_node->cmd[0], cur_node->cmd, envp);
+		if (cur_node->is_builtin == TRUE)
+			exit(ft_exec_builtin(ms, cur_node->cmd));
+		else
+			execve(cur_node->cmd[0], cur_node->cmd, envp);
 		// return (perror("execve"), exit(0));
 	}	
 }

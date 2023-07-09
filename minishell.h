@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/07 20:50:42 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/09 20:53:55 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,58 +29,57 @@
 // BOOL
 # define TRUE 1
 # define FALSE 0
-// Redir enum
-enum	e_redir
+// type enum
+typedef enum e_type
 {
-	no_redir,
-	in_simple,
-	in_double,
-	out_simple,
-	out_double
-};
-// Redir elem
+	undefined,
+	is_pipe,
+	si_redir,
+	di_redir,
+	so_redir,
+	do_redir,
+	is_file,
+	is_command,
+	is_arg
+}	t_type;
+// Lexer chain list
+typedef struct s_lex
+{
+	char			*word;
+	t_type			type;
+	struct s_lex	*next;
+	struct s_lex	*prev;
+}	t_lex;
+// Redir struct
 typedef struct s_redir
 {
-	enum e_redir	type; //n
-	char			*file; //n si un here_doc, mettre le fichier heredoc voir avec g
-}	t_redir;
-// NODE OF t_ms.node_lst
-typedef struct s_node
+	size_t	index;
+	char	*arg;
+	t_type	type;
+} t_redir;
+// Exec chain list
+typedef struct s_exe
 {
 	size_t			index; //g
+	bool			is_builtin; // flag qui defini si c'est un builtin
+	bool			env_related; //flag qui defini en gros si ca doit etre forke lors d'une seule commande
 	char			**cmd; //n
-	t_redir			*redir;
+	t_redir			*redir; // array de redirection terminant par null
 	pid_t			pid; //g
 	int				fd_i; //g
 	int				fd_o; //g
-	struct s_node	*next; //n
-}	t_node;
+	struct s_exe	*next; //n
+}	t_exe;
 // MINISHELL SUPER STRUCTURE
 typedef struct s_ms
 {
-	t_node	*node_lst;
+	t_lex	*lex_first; //list chaine du lexer
+	t_exe	*exe_first; //list chainee des exe
 	char	**envp;
-	size_t	node_nb;
+	size_t	cmd_nb;
 	int		*pipes;
-	char	*prompt;
 }	t_ms;
-// EXEC
-void	ft_exec(t_ms *ms, char **envp);
-// SEXY
-void	ft_banner(void);
-char *ft_prompt_str (char **env);
-// PARSING
-t_node	*parse(char *line);
-//BUILTIN
-void	ft_pwd(void);
-void	ft_cd(char *path, t_ms *ms);
-void 	ft_echo(char **cmd);
-void	ft_env(t_ms *ms);
-void	ft_export(t_ms *ms, char **cmd);
-void	ft_unset(t_ms *ms, char **cmd);
-//BUILTIN UTILS
-char 	**ft_dup_env(char **envp);
-// bool	ft_is_in_env(t_ms *ms, char *varname);
-//UTILS
-void ft_printf_err(char* bin_name, char* args, char* err_msg);
+
+
+
 #endif

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmerge.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 05:52:29 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/04/07 21:10:54 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:23:27 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 char	*ft_strmerge(char *s1, char *s2, char del_source)
 {
