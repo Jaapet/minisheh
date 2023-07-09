@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:16:18 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 18:09:22 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/09 21:12:16 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ static void	ft_dup2(int fd_in, int fd_out, t_ms *ms)
 }
 static int ft_exec_builtin(t_ms *ms, char **cmd)
 {
+	ft_putstr_fd("\nIS_BUILTIN\n",2);
 	if(ft_strncmp(cmd[0], "cd", 3)== 0)
-		return(ft_cd(cmd[0], ms));
+		return(ft_cd(cmd[1], ms));
 	else if((ft_strncmp(cmd[0], "echo", 5) == 0))
 		return(ft_echo(cmd));
 	else if (ft_strncmp(cmd[0], "env", 4) == 0)
@@ -37,7 +38,7 @@ static int ft_exec_builtin(t_ms *ms, char **cmd)
 	else if (ft_strncmp(cmd[0], "unset", 6) == 0)
 		return (ft_unset(ms, cmd));
 	else if (ft_strncmp(cmd[0], "exit", 5) == 0)
-		return (ft_builtin_exit(ms, cmd[0]), ft_atoi(cmd[0]));
+		return (ft_builtin_exit(ms, cmd[1]), ft_atoi(cmd[0]));
 	return (0);
 }
 void	ft_fork(t_ms *ms, char **envp, size_t cmd_i)

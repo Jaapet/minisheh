@@ -37,8 +37,7 @@ static void ft_is_builtin(t_exe *curr_exe)
 	char *temp_str;
 
 	temp_str = curr_exe->cmd[0];
-	if((ft_strncmp(temp_str, "cd", 3)== 0)
-	|| (ft_strncmp(temp_str, "echo", 5) == 0)
+	if ((ft_strncmp(temp_str, "echo", 5) == 0)
 	|| (ft_strncmp(temp_str, "env", 4) == 0)
 	|| (ft_strncmp(temp_str, "pwd", 4) == 0))
 	{
@@ -46,6 +45,7 @@ static void ft_is_builtin(t_exe *curr_exe)
 		curr_exe->env_related = FALSE;
 	}
 	else if ((ft_strncmp(temp_str, "export", 7) == 0)
+	|| (ft_strncmp(temp_str, "cd", 3) == 0)
 	|| (ft_strncmp(temp_str, "unset", 6) == 0)
 	|| (ft_strncmp(temp_str, "exit", 5) == 0))
 	{
