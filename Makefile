@@ -6,11 +6,11 @@
 #    By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/11 17:43:32 by ggualerz          #+#    #+#              #
-#    Updated: 2023/07/08 15:39:53 by ndesprez         ###   ########.fr        #
+#    Updated: 2023/07/09 15:40:15 by ndesprez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES  = 	parsing/parser.c parsing/proc_utils.c parsing/line_splitter.c parsing/word_utils.c
+SOURCES  = 	parsing/parser.c parsing/proc_utils.c parsing/line_splitter.c parsing/word_utils.c parsing/env_utils.c
 NAME     = minishell
 OBJECTS  = ${SOURCES:.c=.o}
 

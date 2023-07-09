@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 15:14:53 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/08 18:33:40 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/09 17:08:57 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,6 @@ static char	*rem_quotes(char *word, int count)
 	return (new);
 }
 
-char	*ft_get_env_value(char **env, char *var)
-{
-	size_t	i;
-
-	i = 0;
-	while (env[i])
-	{
-		if (ft_strncmp(env[i], var, ft_strlen(var)) == 0
-			&& env[i][ft_strlen(var)] == '=')
-			return (ft_strdup(ft_strchr(env[i], '=') + 1));
-		else if (ft_strncmp(env[i], var, ft_strlen(var)) == 0
-			&& env[i][ft_strlen(var)] == '\0')
-			return (NULL);
-		i++;
-	}
-	return (NULL);
-}
-
 static char	*expand(char *word, char **env)
 {
 	char	*new;
@@ -74,17 +56,20 @@ static char	*expand(char *word, char **env)
 		if (word[i] == '$' && quote != '\'')
 		{
 			j = 1;
-			while (word[i + j] && is_valid_char(word[i + j]))//alnum + _
+			while (word[i + j] && is_valid_char(word[i + j]))
 				j++;
 			if (j > 1)
 			{
-				var = set_var(word, i, j, env);//
-				new = replace_var(new, var, j);//
+				var = set_var(word, i, j, env);
+				word = replace_var(word, var, i, j);
+				i += ft_strlen(var) - 1;
 			}
+			else
+				word = replace_var(word, "", i, j);
 		}
 		i++;
 	}
-	return (new);
+	return (word);
 }
 
 char	*proc_quote(char *word, char **env)
@@ -97,19 +82,25 @@ char	*proc_quote(char *word, char **env)
 	i = 0;
 	quote = 0;
 	count = 0;
-	while (word[i])
+	new = expand(word, env);
+	while (new[i])
 	{
-		if ((word[i] == '\'' || word[i] == '"') && !quote)
+		if ((new[i] == '\'' || new[i] == '"') && !quote)
 			count++;
-		quote = update_quote(quote, word[i]);
+		quote = update_quote(quote, new[i]);
 		i++;
 	}
-	new = expand(word, env);
-	new = rem_quotes(word, count);
+	new = rem_quotes(new, count);
 	return (new);
 }
 
 // int	main(void)
 // {
-// 	printf("%s\n", proc_quote("ab\"'c'\"de' f'g"));
+// 	char	*env[3];
+
+// 	env[0] = "toto=42";
+// 	env[1] = "titi=@#$#@";
+// 	env[2] = NULL;
+// 	printf("%s\n",
+// 		proc_quote("ab\"'c'\"de' f'gabc'$toto r'\"$titi k$fg iuhiu\"", env));
 // }

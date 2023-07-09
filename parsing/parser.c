@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:28:00 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/08 17:51:42 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/09 17:47:58 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ t_cmd	*parse(char *line, char **env)
 	list = proc_cmds(cmds, env);
 	if (!list)
 		return (NULL);
+	//tokenize(&list);
 	return (list);
 }
 
@@ -109,8 +110,13 @@ t_cmd	*parse(char *line, char **env)
 // int	main(int argc, char **argv)
 // {
 // 	t_cmd	*clist;
+// 	char	*env[3];
 
-// 	clist = parse("e\"cho\" toto << yop > a.txt | e'cho titi'");
+// 	env[0] = "e=/bin/echo";
+// 	env[1] = "titi=";
+// 	env[2] = NULL;
+
+// 	clist = parse("> a.txt $e | r'ev$' | rev$ | $titi", env);
 // 	ft_lstprint(clist);
-// 	system ("leaks minishell");
+// 	//system ("leaks minishell");
 // }
