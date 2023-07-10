@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:41:55 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/10 20:10:13 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:28:07 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	control_c(int var)
 {
 	var = 1;
 	if (g_ms->in_exec)
-		ft_putstr_fd("^C", STDERR_FILENO);
+		ft_putstr_fd("", STDERR_FILENO);
 	else if (g_ms->in_heredoc)
 	{
 		if (g_ms->heredoc_pid)
