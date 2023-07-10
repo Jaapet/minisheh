@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 15:14:53 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/09 20:42:47 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:05:57 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,26 @@ static char	*expand(char *word, char **env)
 		quote = update_quote(quote, word[i]);
 		if (word[i] == '$' && quote != '\'')
 		{
-			j = 1;
-			while (word[i + j] && is_valid_char(word[i + j]))
-				j++;
-			if (j > 1)
+			if (word[i + 1] == '?')
 			{
-				var = set_var(word, i, j, env);
-				word = replace_var(word, var, i, j);
+				var = ft_itoa(g_ms->last_errcode);
+				word = replace_var(word, var, i, 2);
 				i += ft_strlen(var) - 1;
 			}
 			else
-				word = replace_var(word, "", i, j);
+			{
+				j = 1;
+				while (word[i + j] && is_valid_char(word[i + j]))
+					j++;
+				if (j > 1)
+				{
+					var = set_var(word, i, j, env);
+					word = replace_var(word, var, i, j);
+					i += ft_strlen(var) - 1;
+				}
+				else
+					word = replace_var(word, "", i, j);
+			}
 		}
 		i++;
 	}
