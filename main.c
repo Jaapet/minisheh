@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:36:47 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 21:03:33 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:49:07 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <readline/readline.h>
-#include <readline/history.h>
 
 static t_ms *dummy_ms(void)
 {
@@ -23,15 +21,14 @@ static t_ms *dummy_ms(void)
 	return (dummy);
 }
 
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
-	t_ms *ms;
-	char *rl;
-	
-	ms = dummy_ms();
+	char	*rl;
+
+	g_ms = dummy_ms();
 	ac = 0;
 	av = NULL;
-	ms->envp = ft_dup_env(env);
+	g_ms->envp = ft_dup_env(env);
 	ft_banner();
 	// char **cmd;
 	// cmd = ft_calloc(5, sizeof(char *));
@@ -47,15 +44,27 @@ int main(int ac, char **av, char **env)
 	// // ft_echo(cmd);
 	// // ft_env(ms);
 	// rl = NULL;
-	ms->prompt = ft_prompt_str(ms->envp);
+	g_ms->prompt = ft_prompt_str(g_ms->envp);
+	handle();
 	while (1)
 	{
-		rl = readline(ms->prompt);
+		rl = readline(g_ms->prompt);
+		if (!rl)
+		{
+			printf("exit\n");
+			exit(0);
+		}
+		else if (rl[0] == '\0')
+			continue ;
 		add_history(rl);
-		ms->lex_first = parse(rl, ms->envp);
-		ft_exec(ms, ms->envp);
+		g_ms->lex_first = parse(rl, g_ms->envp);
+		if (signal(SIGQUIT, control_bs) == SIG_ERR)
+			perror("minishell: signal");
+		ft_exec(g_ms, g_ms->envp);
+		if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+			perror("minishell: signal");
 	}
 	// ft_exec(ms, env);
-	ft_clean_tab(ms->envp);
+	ft_clean_tab(g_ms->envp);
 	return (0);
 }

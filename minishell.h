@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 21:02:19 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:53:54 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <signal.h>
+# include <errno.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 # define BASH_NAME_ERR	"minisheh: "
 # include "libft/includes/libft.h"
 // TEMPORARY
@@ -79,7 +83,15 @@ typedef struct s_ms
 	size_t	cmd_nb;
 	int		*pipes;
 	char	*prompt;
+
+	bool	in_exec;
+	bool	in_heredoc;
+	int		heredoc_pid;
+	
+	int		last_errcode;
 }	t_ms;
+
+t_ms	*g_ms;
 
 // EXEC
 void	ft_exec(t_ms *ms, char **envp);
@@ -104,4 +116,10 @@ void ft_printf_err(char* bin_name, char* args, char* err_msg);
 char *ft_str_tolower(char *str);
 //CLEAN
 void ft_clean_tab(char **tab);
+//SIGNALS
+void	handle(void);
+void	control_bs(int var);
+void	control_c(int var);
+//READLINE
+void	rl_replace_line(const char *text, int clear_undo);
 #endif

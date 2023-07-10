@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:13:57 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/09 19:35:24 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/10 18:52:18 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,7 @@ char	**proc_pipe(char **list, char *word, int *i, int *last_op)
 {
 	if (*i && *i > (*last_op) + 1)
 		list = lst_add(list, proc_word(word, *i, *last_op));
-	// if (word[(*i) - 1] == '|')
-	// 	list = lst_add(list, proc_word(word, *i + 1, *i));
-	//else
-		list = lst_add(list, proc_word(word, *i + 1, *i - 1));
+	list = lst_add(list, proc_word(word, *i + 1, *i - 1));
 	*last_op = *i;
 	return (list);
 }
