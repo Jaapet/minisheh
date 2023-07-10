@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:40:23 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/07 23:55:55 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/10 23:23:57 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char **ft_dup_env(char **envp)
 {
 	char	**new_env;
 	size_t	i;
-	
+
 	new_env = ft_calloc(ft_get_env_size(envp) + 1, sizeof(char **));
 	i = 0;
 	while (envp[i] != NULL)

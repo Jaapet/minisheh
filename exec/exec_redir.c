@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:11:10 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/10 20:22:50 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/10 22:38:03 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,28 @@ static int ft_open_heredoc(char *delim)
 	int	temp_fd;
 	char	*buf;
 	
-	temp_fd = open("/tmp/.heredoc_minishell", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
-	//IN HEREDOC TRUE
-	while(1)
+	g_ms->in_heredoc = TRUE;
+	g_ms->heredoc_pid = fork();
+	if (g_ms->heredoc_pid == 0)
 	{
-		write(1, "heredoc> ", 10);
-		buf = get_next_line(0);
-		if (ft_strncmp(delim, buf, ft_strlen(delim)) == 0)
-			break ;
-		write(temp_fd, buf, ft_strlen(buf));
+		temp_fd = open("/tmp/.heredoc_minishell", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
+		//IN HEREDOC TRUE
+		while(1)
+		{
+			write(1, "heredoc> ", 10);
+			buf = get_next_line(0);
+			if (ft_strncmp(delim, buf, ft_strlen(delim)) == 0)
+				break ;
+			write(temp_fd, buf, ft_strlen(buf));
+			free(buf);
+		}
 		free(buf);
+		close(temp_fd);
 	}
-	free(buf);
-	close(temp_fd);
+	waitpid(g_ms->heredoc_pid,NULL,0);
+	g_ms->in_heredoc = FALSE;
 	return(open("/tmp/.heredoc_minishell", O_RDONLY));
+	return (0);
 }
 
 void	ft_set_redir(t_ms *ms)

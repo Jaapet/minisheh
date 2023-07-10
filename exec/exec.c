@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:33:44 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/10 20:12:45 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/10 23:21:47 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static void	ft_lex_to_exe_cmdnb (t_ms *ms)
 	ms->cmd_nb = cmd_i;
 }
 
-static size_t ft_lex_to_exe_redir_count(t_ms *ms)
+static size_t ft_lex_to_exe_redir_count(t_lex *last_pipe)
 {
 	t_lex *curr_node;
 	size_t redir_i;
 
-	curr_node = ms->lex_first;
+	curr_node = last_pipe;
 	redir_i = 0;
 	while (curr_node && curr_node->type != is_pipe)
 	{
@@ -43,15 +43,16 @@ static size_t ft_lex_to_exe_redir_count(t_ms *ms)
 	return (redir_i);
 }
 
-static void ft_lex_to_exe_redir(t_ms *ms, t_exe *curr_exe)
+static void ft_lex_to_exe_redir(t_exe *curr_exe, t_lex *curr_lex)
 {
 	size_t redir_nb;
 	size_t i;
-	t_lex *curr_lex;
+	// t_lex *curr_lex;
 	
-	redir_nb = ft_lex_to_exe_redir_count(ms);
+	if (curr_lex->type == is_pipe)
+		curr_lex = curr_lex->next;
+	redir_nb = ft_lex_to_exe_redir_count(curr_lex);
 	curr_exe->redir = ft_calloc(redir_nb + 1, sizeof(t_redir));
-	curr_lex = ms->lex_first;
 	i = 0;
 	while (curr_lex)
 	{
@@ -65,6 +66,8 @@ static void ft_lex_to_exe_redir(t_ms *ms, t_exe *curr_exe)
 			(curr_exe->redir)[i].arg = curr_lex->word;
 			i++;
 		}
+		if (curr_lex->type == is_pipe)
+			break ;
 		curr_lex = curr_lex->next;
 	}
 }
@@ -88,18 +91,20 @@ static t_exe *ft_lex_to_exe_cmd_build(t_ms *ms)
 	t_lex *curr_lex;
 	t_exe *curr_exe;
 	t_exe *first_exe;
+	t_lex *last_pipe;
 	size_t i;
 
 	first_exe = ft_calloc(1, sizeof(t_exe));
 	curr_lex = ms->lex_first;
 	curr_exe = first_exe;
+	last_pipe = ms->lex_first;
 	while(curr_lex)
 	{
 		if (curr_lex->type == is_command)
 		{
 			curr_exe->cmd = ft_calloc(ft_cargs(curr_lex) + 2, sizeof(char *));
 			curr_exe->cmd[0] = ft_strdup(curr_lex->word);
-			ft_lex_to_exe_redir(ms, curr_exe);
+			ft_lex_to_exe_redir(curr_exe, last_pipe);
 			i = 1;
 		}
 		else if (curr_lex->type == is_arg)
@@ -109,6 +114,7 @@ static t_exe *ft_lex_to_exe_cmd_build(t_ms *ms)
 		}
 		else if (curr_lex->type == is_pipe)
 		{
+			last_pipe = curr_lex->next;
 			curr_exe->next = ft_calloc(1, sizeof(t_exe));
 			curr_exe = curr_exe->next;
 		}
@@ -137,10 +143,33 @@ static void	ft_init_exec(t_ms *ms)
 	ft_set_redir(ms);
 
 }
+// int		ft_error_decode(int *status)
+// {
+// 	if (WIFEXITED(status)) 
+// 	{
+//     int exit_status = WEXITSTATUS(status);
+//     // Traitement lorsque le processus s'est terminé normalement
+// 	} 
+// 	else if (WIFSIGNALED(status)) 
+// 	{
+//     int signal_number = WTERMSIG(status);
+//     // Traitement lorsque le processus s'est terminé à cause d'un signal
+// 	} 
+// 	// else if (WIFSTOPPED(status)) 
+// 	// {
+//     // int signal_number = WSTOPSIG(status);
+//     // // Traitement lorsque le processus s'est arrêté en raison d'un signal
+// 	// } 
+// 	// else if (WIFCONTINUED(status)) 
+// 	// {
+//     // // Traitement lorsque le processus a été repris
+// 	// }
+// }
 
 void	ft_exec(t_ms *ms, char **envp)
 {
 	t_exe	*cur_node;
+	int		ret;
 	
 	ft_init_exec(ms);
 	cur_node = ms->exe_first;
@@ -153,7 +182,9 @@ void	ft_exec(t_ms *ms, char **envp)
 	cur_node = ms->exe_first;
 	while (cur_node)
 	{
-		waitpid(cur_node->pid, NULL, 0);
+		waitpid(cur_node->pid, &ret, 0);
+		g_ms->last_errcode = WEXITSTATUS(ret);
+		printf("\nDEBUG %i\n", ret);
 		cur_node = cur_node->next;
 	}
 	g_ms->in_exec = FALSE;

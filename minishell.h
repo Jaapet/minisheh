@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/10 19:53:54 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/10 22:35:52 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ typedef struct s_ms
 
 	bool	in_exec;
 	bool	in_heredoc;
-	int		heredoc_pid;
+	pid_t		heredoc_pid;
 	
 	int		last_errcode;
 }	t_ms;

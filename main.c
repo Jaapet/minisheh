@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:36:47 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/10 20:25:49 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/11 00:25:13 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int ac, char **av, char **env)
 	handle();
 	// while (1)
 	// {
-		rl = ft_strdup("echo toto | rev > a.txt");
+		rl = ft_strdup("echo zizi | < a rev >> b");
 		// rl = readline(g_ms->prompt);
 		// if (!rl)
 		// {
