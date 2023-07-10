@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 19:32:20 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 16:41:02 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:29:20 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char *ft_str_tolower(char *str)
 	size_t i;
 
 	str_len = ft_strlen(str);
-	out_str = ft_calloc(str_len, sizeof(char));
+	out_str = ft_calloc(str_len + 1, sizeof(char));
 	if (out_str == NULL)
 		return (NULL);
 	i = 0;

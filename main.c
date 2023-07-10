@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:36:47 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 21:03:33 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:30:18 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int main(int ac, char **av, char **env)
 	{
 		rl = readline(ms->prompt);
 		add_history(rl);
+		// rl = "ls | echo toto | rev";
 		ms->lex_first = parse(rl, ms->envp);
 		ft_exec(ms, ms->envp);
 	}

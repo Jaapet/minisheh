@@ -6,11 +6,11 @@
 #    By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/11 17:43:32 by ggualerz          #+#    #+#              #
-#    Updated: 2023/07/09 20:57:47 by ggualerz         ###   ########.fr        #
+#    Updated: 2023/07/10 19:27:54 by ggualerz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SOURCES  = 	main.c utils.c clean.c\
+SOURCES  = 	main.c utils_main.c clean.c\
 			parsing/env_utils.c parsing/line_splitter.c parsing/parser.c parsing/proc_utils.c parsing/token_utils.c parsing/tokenizer.c parsing/utils.c parsing/word_utils.c\
 			exec/exec.c exec/exec_utils.c exec/exec_redir.c exec/exec_fd.c exec/exec_fork.c exec/exec_acess.c exec/exec_path.c\
 			sexy/sexy.c\

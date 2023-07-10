@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:33:44 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 20:38:59 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:30:49 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,16 @@ static size_t ft_cargs(t_lex *begin)
 	}
 	return (args_nb);
 }
-static void ft_lex_to_exe_cmd_build(t_ms *ms)
+static t_exe *ft_lex_to_exe_cmd_build(t_ms *ms)
 {
 	t_lex *curr_lex;
 	t_exe *curr_exe;
+	t_exe *first_exe;
 	size_t i;
 
+	first_exe = ft_calloc(1, sizeof(t_exe));
 	curr_lex = ms->lex_first;
-	curr_exe = ms->exe_first;
+	curr_exe = first_exe;
 	while(curr_lex)
 	{
 		if (curr_lex->type == is_command)
@@ -112,6 +114,7 @@ static void ft_lex_to_exe_cmd_build(t_ms *ms)
 		}
 		curr_lex = curr_lex->next;
 	}
+	return (first_exe);
 }
 
 static void ft_lex_to_exe(t_ms *ms)
@@ -119,8 +122,8 @@ static void ft_lex_to_exe(t_ms *ms)
 	
 	//
 	ft_lex_to_exe_cmdnb(ms);
-	ms->exe_first = ft_calloc(1, sizeof(t_exe));
-	ft_lex_to_exe_cmd_build(ms);
+	// ms->exe_first = ft_calloc(1, sizeof(t_exe));
+	ms->exe_first = ft_lex_to_exe_cmd_build(ms);
 	ft_acess_cmd(ms);
 	// Changer le cmd[0] en full path et check l'access
 	

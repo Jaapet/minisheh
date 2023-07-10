@@ -52,17 +52,19 @@ static void ft_is_builtin(t_exe *curr_exe)
 		curr_exe->is_builtin = TRUE;
 		curr_exe->env_related = TRUE;
 	}
-	else
-	{
-		curr_exe->is_builtin = FALSE;
-		curr_exe->env_related = FALSE;
-	}
+	// else
+	// {
+	// 	curr_exe->is_builtin = FALSE;
+	// 	curr_exe->env_related = FALSE;
+	// }
 }
 static void	ft_parse_cmd(t_exe *curr_exe, char **path)
 {
 	char *temp_cmd;
 	char *to_lower_cmd;
 
+	temp_cmd = NULL;
+	to_lower_cmd = NULL;
 	to_lower_cmd = ft_str_tolower(curr_exe->cmd[0]);
 	// if (out_cmd == NULL)
 		// ft_exit(ERR_MALLOC, pipex);

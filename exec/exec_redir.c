@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:11:10 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 20:36:11 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/10 19:37:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ static int ft_open_heredoc(char *delim)
 	char	*buf;
 	
 	temp_fd = open("/tmp/.heredoc_minishell", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
-	if (temp_fd < 0)
-	{}
-		//KILL
+	//IN HEREDOC TRUE
 	while(1)
 	{
 		write(1, "heredoc> ", 10);
