@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:16:18 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/10 19:31:06 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:12:15 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,21 @@ void	ft_fork(t_ms *ms, char **envp, size_t cmd_i)
 	cur_node = ft_get_node(ms->exe_first, cmd_i);
 	if (cur_node->env_related == TRUE && ms->cmd_nb == 1)
 		ft_exec_builtin(ms, cur_node->cmd);
-	cur_node->pid = fork();
-	// if (p->pid[cmd_i] < 0)
-	// 	ft_exit(ERR_FORK, p);
-	if (cur_node->pid == 0)
-	{
-		ft_dup2(cur_node->fd_i, cur_node->fd_o, ms);
-		if (cur_node->is_builtin == TRUE)
-			exit(ft_exec_builtin(ms, cur_node->cmd));
-		else
-			execve(cur_node->cmd[0], cur_node->cmd, envp);
-		// return (perror("execve"), exit(0));
-	}	
+	else {
+		g_ms->in_exec = TRUE;
+		cur_node->pid = fork();
+		// if (p->pid[cmd_i] < 0)
+		// 	ft_exit(ERR_FORK, p);
+		if (cur_node->pid == 0)
+		{
+			ft_dup2(cur_node->fd_i, cur_node->fd_o, ms);
+			if (cur_node->is_builtin == TRUE)
+				exit(ft_exec_builtin(ms, cur_node->cmd));
+			else
+			{
+				execve(cur_node->cmd[0], cur_node->cmd, envp);
+			}
+			// return (perror("execve"), exit(0));
+		}	
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:11:10 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/10 19:37:54 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:22:50 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void	ft_set_redir(t_ms *ms)
 				}
 				else if (lst->redir[i].type == so_redir)
 				{
-					if (lst->fd_o != 0)
+					if (lst->fd_o != 1)
 						close(lst->fd_o);
 					lst->fd_o = open(lst->redir[i].arg, FLAG_OUTFILE_STD, 0000644);
 				}
 				else if (lst->redir[i].type == do_redir)
 				{
-					if (lst->fd_o != 0)
+					if (lst->fd_o != 1)
 						close(lst->fd_o);
 					lst->fd_o = open (lst->redir[i].arg, FLAG_OUTFILE_APPEND, 0000644);
 				}
