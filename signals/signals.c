@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:41:55 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/10 19:50:05 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:10:13 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	control_bs(int var)
 		ft_putstr_fd("^\\", STDERR_FILENO);
 	errno = var;
 	if (signal(SIGINT, control_c) == SIG_ERR)
-		perror("minishell: signal");
+		perror("signal");
 }
 
 void	control_c(int var)
@@ -46,15 +46,15 @@ void	control_c(int var)
 	g_ms->last_errcode = 1;
 	errno = 0;
 	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-		perror("minishell: signal");
+		perror("signal");
 }
 
 void	handle(void)
 {
 	errno = 0;
 	if (signal(SIGINT, control_c) == SIG_ERR)
-		perror("minishell: signal");
+		perror("signal");
 	errno = 0;
 	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-		perror("minishell: signal");
+		perror("signal");
 }
