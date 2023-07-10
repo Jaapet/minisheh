@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_fork.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:16:18 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/10 20:12:15 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:39:37 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	ft_fork(t_ms *ms, char **envp, size_t cmd_i)
 	if (cur_node->env_related == TRUE && ms->cmd_nb == 1)
 		ft_exec_builtin(ms, cur_node->cmd);
 	else {
-		g_ms->in_exec = TRUE;
 		cur_node->pid = fork();
 		// if (p->pid[cmd_i] < 0)
 		// 	ft_exit(ERR_FORK, p);
@@ -63,6 +62,6 @@ void	ft_fork(t_ms *ms, char **envp, size_t cmd_i)
 				execve(cur_node->cmd[0], cur_node->cmd, envp);
 			}
 			// return (perror("execve"), exit(0));
-		}	
+		}
 	}
 }

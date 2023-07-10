@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:50:17 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/09 20:48:49 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/10 23:15:42 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	set_redir(t_lex **list)
 		else if (!ft_strncmp(temp->word, "<<", 3))
 			temp->type = di_redir;
 		if (temp->type >= si_redir && temp->type <= do_redir
-			&& !temp->next->type)
+			&& temp->next && !temp->next->type)
 			temp->next->type = is_file;
 		temp = temp->next;
 	}

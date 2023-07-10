@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/10 19:53:54 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/10 22:53:09 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int	ft_unset(t_ms *ms, char **cmd);
 void	ft_builtin_exit(t_ms *ms, char *cmd);
 //PARSE
 t_lex	*parse(char *line, char **env);
+int	check_synt(t_lex *list);
 //BUILTIN UTILS
 char 	**ft_dup_env(char **envp);
 // bool	ft_is_in_env(t_ms *ms, char *varname);

@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:41:55 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/10 20:28:07 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:51:51 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	control_bs(int var)
 {
 	var = 1;
 	if (g_ms->in_exec)
-		ft_putstr_fd("^\\", STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
 	errno = var;
 	if (signal(SIGINT, control_c) == SIG_ERR)
 		perror("signal");
@@ -26,7 +26,7 @@ void	control_c(int var)
 {
 	var = 1;
 	if (g_ms->in_exec)
-		ft_putstr_fd("", STDERR_FILENO);
+		ft_putstr_fd("\n", STDERR_FILENO);
 	else if (g_ms->in_heredoc)
 	{
 		if (g_ms->heredoc_pid)

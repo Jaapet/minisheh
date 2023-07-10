@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 15:14:53 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/10 19:05:57 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/10 21:09:27 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char	*expand(char *word, char **env)
 	while (word[i])
 	{
 		quote = update_quote(quote, word[i]);
-		if (word[i] == '$' && quote != '\'')
+		if (word[i] == '$' && is_valid_char(word[i + 1]) && quote != '\'')
 		{
 			if (word[i + 1] == '?')
 			{
