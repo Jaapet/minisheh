@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 19:00:12 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 16:59:30 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/10 21:03:07 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int ft_echo(char **cmd)
 	}
 	if (is_n == FALSE)
 		out = ft_add_nl(out);
+	// out[6] = '\0';
 	printf("%s", out);
 	if (out != NULL)
 		free(out);

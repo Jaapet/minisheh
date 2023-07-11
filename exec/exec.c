@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:33:44 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/10 23:21:47 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:22:01 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,5 +187,4 @@ void	ft_exec(t_ms *ms, char **envp)
 		printf("\nDEBUG %i\n", ret);
 		cur_node = cur_node->next;
 	}
-	g_ms->in_exec = FALSE;
 }

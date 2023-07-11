@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:36:47 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/11 20:10:12 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:19:45 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int ac, char **av, char **env)
 	handle();
 	while (1)
 	{
-		// rl = ft_strdup("echo zizi | < a rev >> b");
+		// rl = ft_strdup("echo toto | rev > a.txt");
 		rl = readline(g_ms->prompt);
 		if (!rl)
 		{
@@ -59,11 +59,16 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		add_history(rl);
 		g_ms->lex_first = parse(rl, g_ms->envp);
-		if (signal(SIGQUIT, control_bs) == SIG_ERR)
-			perror("minishell: signal");
-		ft_exec(g_ms, g_ms->envp);
-		if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-			perror("minishell: signal");
+		if (check_synt(g_ms->lex_first))
+		{
+			g_ms->in_exec = TRUE;
+			if (signal(SIGQUIT, control_bs) == SIG_ERR)
+				perror("signal");
+			ft_exec(g_ms, g_ms->envp);
+			g_ms->in_exec = FALSE;
+			if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+				perror("signal");
+		}
 	}
 	// ft_exec(ms, env);
 	ft_clean_tab(g_ms->envp);
