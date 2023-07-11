@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 15:14:53 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/10 21:09:27 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/11 23:19:53 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static char	*rem_quotes(char *word, int count)
 		}
 		i++;
 	}
+	free(word);
 	return (new);
 }
 
@@ -59,6 +60,7 @@ static char	*expand(char *word, char **env)
 				var = ft_itoa(g_ms->last_errcode);
 				word = replace_var(word, var, i, 2);
 				i += ft_strlen(var) - 1;
+				free(var);
 			}
 			else
 			{
@@ -70,6 +72,7 @@ static char	*expand(char *word, char **env)
 					var = set_var(word, i, j, env);
 					word = replace_var(word, var, i, j);
 					i += ft_strlen(var) - 1;
+					free(var);
 				}
 				else
 					word = replace_var(word, "", i, j);
