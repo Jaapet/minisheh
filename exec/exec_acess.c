@@ -29,6 +29,7 @@ static char *ft_cmd_in_path(char *cmd, char **path)
 		free(temp_cmd);
 		i++;
 	}
+	ft_printf_err(cmd, NULL, "command not found");
 	return (NULL);
 	// ft_exit(ERR_CMD_NOT_FOUND, ms);
 }

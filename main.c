@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:36:47 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/11 20:19:45 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:59:30 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,13 @@ int	main(int ac, char **av, char **env)
 {
 	char	*rl;
 
+	if (env[0] == NULL)
+		return(ft_putstr_fd("[1]\t1337 not a segmentation fault\t./minishell\n\tan env is mandatory\n", 2), 1);
 	g_ms = dummy_ms();
 	ac = 0;
 	av = NULL;
 	g_ms->envp = ft_dup_env(env);
 	ft_banner();
-	// char **cmd;
-	// cmd = ft_calloc(5, sizeof(char *));
-	// cmd[0] = ft_strdup("export");
-	// cmd[1] = ft_strdup("2A=42");
-	// cmd[2] = ft_strdup("B_C=42");
-	// cmd[3] = ft_strdup("C=42");
-	// char **cmd2;
-	// cmd2 = ft_calloc(5, sizeof(char *));
-	// cmd2[0] = ft_strdup("unset");
-	// cmd2[1] = ft_strdup("2A");
-	// cmd2[2] = ft_strdup("C");
-	// // ft_echo(cmd);
-	// // ft_env(ms);
-	// rl = NULL;
 	g_ms->prompt = ft_prompt_str(g_ms->envp);
 	handle();
 	while (1)
@@ -55,6 +43,8 @@ int	main(int ac, char **av, char **env)
 			printf("exit\n");
 			exit(0);
 		}
+		// if (rl[0] == '^') /////////DEBUG
+		// 	break;
 		else if (rl[0] == '\0')
 			continue ;
 		add_history(rl);
@@ -70,7 +60,7 @@ int	main(int ac, char **av, char **env)
 				perror("signal");
 		}
 	}
-	// ft_exec(ms, env);
+	// system("leaks minishell");
 	ft_clean_tab(g_ms->envp);
 	return (0);
 }

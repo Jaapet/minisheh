@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:37:03 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 16:59:50 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:45:44 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ int	ft_export(t_ms *ms, char **cmd)
 		while (cmd[i])
 		{
 			if (ft_var_syntax("export", cmd[i]) == FALSE)
+			{
 				temp = NULL;
+				g_ms->last_errcode = 1;
+			}
 			else if (ft_var_in_env(ms->envp, cmd[i]) == FALSE)
 				ft_add_env(ms, cmd[i]);
 			else if (ft_var_in_env(ms->envp, cmd[i]) == TRUE &&

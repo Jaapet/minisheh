@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:16:18 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/11 20:21:28 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:19:32 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ft_dup2(int fd_in, int fd_out, t_ms *ms)
 }
 static int ft_exec_builtin(t_ms *ms, char **cmd)
 {
-	ft_putstr_fd("\nIS_BUILTIN\n",2);
+	// ft_putstr_fd("\nIS_BUILTIN\n",2);
 	if(ft_strncmp(cmd[0], "cd", 3)== 0)
 		return(ft_cd(cmd[1], ms));
 	else if((ft_strncmp(cmd[0], "echo", 5) == 0))
@@ -38,7 +38,7 @@ static int ft_exec_builtin(t_ms *ms, char **cmd)
 	else if (ft_strncmp(cmd[0], "unset", 6) == 0)
 		return (ft_unset(ms, cmd));
 	else if (ft_strncmp(cmd[0], "exit", 5) == 0)
-		return (ft_builtin_exit(ms, cmd[1]), ft_atoi(cmd[0]));
+		return (ft_builtin_exit(ms, cmd), 0);
 	return (0);
 }
 void	ft_fork(t_ms *ms, char **envp, size_t cmd_i)
@@ -57,6 +57,8 @@ void	ft_fork(t_ms *ms, char **envp, size_t cmd_i)
 			ft_dup2(cur_node->fd_i, cur_node->fd_o, ms);
 			if (cur_node->is_builtin == TRUE)
 				exit(ft_exec_builtin(ms, cur_node->cmd));
+			else if (cur_node->cmd[0] == NULL)
+				exit(127);
 			else
 			{
 				execve(cur_node->cmd[0], cur_node->cmd, envp);

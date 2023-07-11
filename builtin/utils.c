@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:40:23 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/10 23:23:57 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:51:31 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ bool	ft_var_syntax(char *bin_name, char *var)
 		varname = ft_isolate_var(var);
 	else
 		varname = ft_strdup(var);
-	if (ft_isalpha(varname[0]) == 0)
+	if (ft_isalpha(varname[0]) == 0 && varname[0] != '_')
 	{
 		ft_printf_err(bin_name, var, "not a valid identifier");
 		return (free(varname), FALSE);
