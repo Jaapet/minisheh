@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 20:07:47 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:21:46 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,4 +124,7 @@ void	control_bs(int var);
 void	control_c(int var);
 //READLINE
 void	rl_replace_line(const char *text, int clear_undo);
+//FREE
+void	free_lex(void);
+void	free_exe(void);
 #endif
