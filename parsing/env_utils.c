@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 17:53:40 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/10 21:10:47 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/11 23:29:06 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,20 @@ int	is_valid_char(char c)
 		return (1);
 	return (0);
 }
+
+// static char	*ft_strdup_free(char *s1)
+// {
+// 	size_t	s_len;
+// 	char	*out_str;
+
+// 	s_len = ft_strlen(s1);
+// 	out_str = ft_calloc(s_len + 1, sizeof(char));
+// 	if (out_str == NULL)
+// 		return (NULL);
+// 	ft_strlcpy(out_str, s1, s_len + 1);
+// 	free(s1);
+// 	return (out_str);
+// }
 
 static char	*ft_get_env_value(char **env, char *var)
 {
@@ -55,6 +69,7 @@ char	*set_var(char *word, int beg, int size, char **env)
 	var = ft_get_env_value(env, name);
 	if (!var)
 		return ("");
+	free(name);
 	return (var);
 }
 
@@ -84,6 +99,7 @@ char	*replace_var(char *word, char *var, int beg, int size)
 		iterators[0]++;
 		iterators[1]++;
 	}
+	free(word);
 	return (new);
 }
 

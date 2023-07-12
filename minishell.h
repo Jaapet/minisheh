@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/11 21:19:50 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:15:09 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_redir
 	size_t	index;
 	char	*arg;
 	t_type	type;
-} t_redir;
+}	t_redir;
 // Exec chain list
 typedef struct s_exe
 {
@@ -108,7 +108,8 @@ int	ft_unset(t_ms *ms, char **cmd);
 void	ft_builtin_exit(t_ms *ms, char **cmd);
 //PARSE
 t_lex	*parse(char *line, char **env);
-int	check_synt(t_lex *list);
+int		check_synt(t_lex *list);
+char	*expand_heredoc(char *word, char **env);
 //BUILTIN UTILS
 char 	**ft_dup_env(char **envp);
 // bool	ft_is_in_env(t_ms *ms, char *varname);

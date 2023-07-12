@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:13:57 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/10 18:52:18 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/11 23:11:12 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ char	**lst_add(char **list, char *word)
 		new[i] = word;
 		while (i-- > 0)
 			new[i] = list[i];
-		free(list);
 	}
+	free(list);
 	return (new);
 }
 

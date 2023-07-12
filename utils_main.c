@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 19:32:20 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/11 00:26:25 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:39:55 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,9 @@ int	check_synt(t_lex *list)
 		else if (temp->type >= 2 && temp->type <= 5
 			&& (!temp->next || temp->next->type != 6))
 			return (synt_err(temp->type));
-		else if (temp->type >= 2 && temp->type <= 5 && temp->next->type == 6)
-			return (check_file(temp->next->word, temp->type));
+		else if (temp->type >= 2 && temp->type <= 5 && temp->next->type == 6
+			&& !check_file(temp->next->word, temp->type))
+			return (0);
 		temp = temp->next;
 	}
 	if (pipe)

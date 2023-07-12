@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:24 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/10 23:20:26 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:15:27 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_cd(char *path, t_ms *ms)
 	char	*export_cmd[3];
 	char	*temp;
 	char	pwd[PATH_MAX];
-	
+
 	export_cmd[0] = "export";
 	export_cmd[2] = NULL;
 	if (chdir(path) != 0)
@@ -28,7 +28,7 @@ int	ft_cd(char *path, t_ms *ms)
 	}
 	else
 	{
-		if(ft_var_in_env(ms->envp, "PWD") == true)
+		if (ft_var_in_env(ms->envp, "PWD") == true)
 		{
 			temp = ft_isolate_val(ft_get_env_value(ms->envp, "PWD"));
 			export_cmd[1] = ft_strjoin("OLDPWD=", temp);

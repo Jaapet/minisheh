@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:28:00 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/09 20:40:59 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/11 23:33:18 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static char	**proc(char *word)
 	}
 	if (i > last_op + 1
 		|| (i == 1 && word[0] != '|' && word[0] != '<' && word[0] != '>'))
-		list = lst_add(list, proc_word(word, i, last_op));
+		list = lst_add(list, proc_word(word, i, last_op));//
+	free(word);
 	return (list);
 }
 
@@ -66,6 +67,7 @@ static void	add_cmd(t_lex **list, char **words, char **env)
 		add_back(list, words[i], env);
 		i++;
 	}
+	free(words);
 }
 
 static t_lex	*proc_cmds(char **cmds, char **env)
@@ -80,6 +82,7 @@ static t_lex	*proc_cmds(char **cmds, char **env)
 		add_cmd(&list, proc(cmds[i]), env);
 		i++;
 	}
+	free(cmds);
 	return (list);
 }
 
@@ -87,7 +90,7 @@ t_lex	*parse(char *line, char **env)
 {
 	char	**cmds;
 	t_lex	*list;
-	//if (!line) error
+
 	cmds = split_line(line);
 	if (!cmds)
 		return (NULL);
@@ -108,7 +111,7 @@ t_lex	*parse(char *line, char **env)
 // 	printf(" NULL\n");
 // }
 
-// int	main(int argc, char **argv)
+// int	main(void)
 // {
 // 	t_lex	*clist;
 // 	char	*env[3];
@@ -118,6 +121,6 @@ t_lex	*parse(char *line, char **env)
 // 	env[2] = NULL;
 
 // 	clist = parse("> a.txt $e | r'ev$' | rev$ | $titi", env);
+// 	system ("leaks minishell");
 // 	ft_lstprint(clist);
-// 	//system ("leaks minishell");
 // }

@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:27:51 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/09 20:40:59 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:06:02 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	tokenize(t_lex **list);
 void	set_type(t_lex *word, t_type type);
 int		is_op(char c);
 int		redir_ok(char a, char b);
+void	free_tab(char **tab);
 
 t_lex	*parse(char *line, char **env);
 
