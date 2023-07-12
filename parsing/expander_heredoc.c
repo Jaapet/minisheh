@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_heredoc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:36:19 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/12 20:45:48 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:32:10 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

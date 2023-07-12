@@ -6,12 +6,19 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:11:10 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 20:44:54 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:19:05 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 #include "../builtin/builtin.h"
+
+static void	ft_end_here_doc(char *buf, int fd)
+{
+	free(buf);
+	close(fd);
+	exit(0);
+}
 
 int	ft_open_heredoc(char *delim)
 {
@@ -30,12 +37,11 @@ int	ft_open_heredoc(char *delim)
 			buf = get_next_line(0);
 			if (ft_strncmp(delim, buf, ft_strlen(delim)) == 0)
 				break ;
+			buf = expand_heredoc(buf, g_ms->envp);
 			write(temp_fd, buf, ft_strlen(buf));
 			free(buf);
 		}
-		free(buf);
-		close(temp_fd);
-		exit(0);
+		ft_end_here_doc(buf, temp_fd);
 	}
 	waitpid(g_ms->heredoc_pid, NULL, 0);
 	g_ms->in_heredoc = FALSE;

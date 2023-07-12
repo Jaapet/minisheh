@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:43:48 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 20:01:18 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:23:05 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,11 @@ void	ft_clean_tab(char **tab)
 		i++;
 	}
 	free(tab);
+}
+
+void	ft_triple_free(char *ptr, char *ptr2, char *ptr3)
+{
+	free(ptr);
+	free(ptr2);
+	free(ptr3);
 }

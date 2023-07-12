@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 19:32:20 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 20:09:59 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:25:11 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_printf_err(char *bin_name, char *args, char *err_msg)
 {
-	int		original_stderr;
 	char	*tmp;
 	char	*tmp2;
 	char	*buff;
@@ -36,13 +35,8 @@ void	ft_printf_err(char *bin_name, char *args, char *err_msg)
 	}
 	tmp = ft_strjoin(tmp2, err_msg);
 	buff = ft_strjoin(tmp, "\n");
-	free(tmp);
-	free(tmp2);
-	original_stderr = dup(STDERR_FILENO);
-	dup2(STDOUT_FILENO, STDERR_FILENO);
-	printf("%s", buff);
-	free(buff);
-	dup2(original_stderr, STDERR_FILENO);
+	write(2, buff, ft_strlen(buff));
+	ft_triple_free(tmp, tmp2, buff);
 }
 
 char	*ft_str_tolower(char *str)

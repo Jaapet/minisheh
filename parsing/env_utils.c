@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 17:53:40 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/12 19:54:24 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:32:01 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*set_var(char *word, int beg, int size, char **env)
 	}
 	var = ft_get_env_value(env, name);
 	if (!var)
-		return ("");
+		return (ft_strdup(""));
 	free(name);
 	return (var);
 }

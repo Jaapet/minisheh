@@ -6,11 +6,18 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:36:47 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 21:26:12 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:47:18 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void static	ft_free_rl(char *rl)
+{
+	free_lex();
+	free_exe();
+	free(rl);
+}
 
 void	ft_init(char **env, int *ac, char **av)
 {
@@ -55,7 +62,7 @@ int	main(int ac, char **av, char **env)
 			if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
 				perror("signal");
 		}
-		//ft_free_lex_and_exe
+		ft_free_rl(rl);
 	}
 	return (0);
 }

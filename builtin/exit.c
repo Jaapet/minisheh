@@ -6,13 +6,13 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 18:01:13 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 21:27:52 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:26:33 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-static size_t ft_strlen_exit(char *cmd)
+static size_t	ft_strlen_exit(char *cmd)
 {
 	size_t	i;
 	size_t	j;
@@ -60,5 +60,5 @@ void	ft_builtin_exit(t_ms *ms, char **cmd)
 		return (ft_printf_err("exit", cmd[1], "numeric argument required"),
 			exit(255));
 	else
-		exit(ft_atoi(cmd[1]));
+		exit(ft_atoi(cmd[1]) % 256);
 }
