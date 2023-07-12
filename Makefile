@@ -6,12 +6,12 @@
 #    By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/11 17:43:32 by ggualerz          #+#    #+#              #
-#    Updated: 2023/07/11 22:17:31 by ndesprez         ###   ########.fr        #
+#    Updated: 2023/07/12 18:42:05 by ndesprez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SOURCES  = 	main.c utils_main.c clean.c\
-			parsing/env_utils.c parsing/line_splitter.c parsing/parser.c parsing/proc_utils.c parsing/token_utils.c parsing/tokenizer.c parsing/utils.c parsing/word_utils.c parsing/free_utils.c\
+			parsing/env_utils.c parsing/line_splitter.c parsing/parser.c parsing/proc_utils.c parsing/token_utils.c parsing/tokenizer.c parsing/utils.c parsing/word_utils.c parsing/free_utils.c parsing/expander_heredoc.c\
 			exec/exec.c exec/exec_utils.c exec/exec_redir.c exec/exec_fd.c exec/exec_fork.c exec/exec_acess.c exec/exec_path.c\
 			sexy/sexy.c\
 			builtin/pwd.c builtin/cd.c builtin/echo.c builtin/env.c builtin/export.c builtin/utils.c builtin/unset.c builtin/exit.c\
