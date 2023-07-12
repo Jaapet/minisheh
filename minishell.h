@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 19:06:17 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:08:48 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_redir
 	size_t	index;
 	char	*arg;
 	t_type	type;
-} t_redir;
+}	t_redir;
 // Exec chain list
 typedef struct s_exe
 {
