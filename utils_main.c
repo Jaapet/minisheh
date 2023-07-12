@@ -6,19 +6,18 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 19:32:20 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 19:31:34 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 20:09:59 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "minishell.h"
 
-void	ft_printf_err(char* bin_name, char* args, char* err_msg)
+void	ft_printf_err(char *bin_name, char *args, char *err_msg)
 {
-	int 	original_stderr;
+	int		original_stderr;
 	char	*tmp;
 	char	*tmp2;
-	char 	*buff;
+	char	*buff;
 
 	if (bin_name)
 	{
@@ -36,21 +35,21 @@ void	ft_printf_err(char* bin_name, char* args, char* err_msg)
 		free (tmp);
 	}
 	tmp = ft_strjoin(tmp2, err_msg);
-	buff = ft_strjoin(tmp,"\n");
+	buff = ft_strjoin(tmp, "\n");
 	free(tmp);
 	free(tmp2);
 	original_stderr = dup(STDERR_FILENO);
-    dup2(STDOUT_FILENO, STDERR_FILENO);
-	printf("%s",buff);
+	dup2(STDOUT_FILENO, STDERR_FILENO);
+	printf("%s", buff);
 	free(buff);
-    dup2(original_stderr, STDERR_FILENO);
+	dup2(original_stderr, STDERR_FILENO);
 }
 
-char *ft_str_tolower(char *str)
+char	*ft_str_tolower(char *str)
 {
-	char *out_str;
-	size_t str_len;
-	size_t i;
+	char	*out_str;
+	size_t	str_len;
+	size_t	i;
 
 	str_len = ft_strlen(str);
 	out_str = ft_calloc(str_len + 1, sizeof(char));

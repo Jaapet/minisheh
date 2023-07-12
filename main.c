@@ -6,18 +6,17 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:36:47 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 19:35:51 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 20:08:58 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_ms *dummy_ms(void)
+static t_ms	*dummy_ms(void)
 {
 	t_ms	*dummy;
 
 	dummy = ft_calloc(1, sizeof(t_ms));
-
 	return (dummy);
 }
 
@@ -26,7 +25,8 @@ int	main(int ac, char **av, char **env)
 	char	*rl;
 
 	if (env[0] == NULL)
-		return(ft_putstr_fd("[1]\t1337 not a segmentation fault\t./minishell\n\tan env is mandatory\n", 2), 1);
+		return (ft_putstr_fd("[1]\t1337 not a segmentation fault\
+		\t./minishell\n\tan env is mandatory\n", 2), 1);
 	g_ms = dummy_ms();
 	ac = 0;
 	av = NULL;
@@ -36,15 +36,12 @@ int	main(int ac, char **av, char **env)
 	handle();
 	while (1)
 	{
-		// rl = ft_strdup("> a.txt");
 		rl = readline(g_ms->prompt);
 		if (!rl)
 		{
 			printf("exit\n");
 			exit(0);
 		}
-		// if (rl[0] == '^') /////////DEBUG
-		// 	break;
 		else if (rl[0] == '\0')
 			continue ;
 		add_history(rl);
@@ -61,6 +58,5 @@ int	main(int ac, char **av, char **env)
 		}
 		free(rl);
 	}
-
 	return (0);
 }

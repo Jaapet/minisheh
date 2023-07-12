@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 18:00:11 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/08 15:45:25 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:55:15 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,3 @@ char	**split_line(char *str)
 	}
 	return (list);
 }
-
-// int main(int argc, char **argv)
-// {
-// 	printf("%d\n", count(argv[1]));
-// 	char **list = split_line(argv[1]);
-// 	printf("%s\n%s\n%s\n%s\n%s\n%s\n", list[0], list[1], list[2], list[3], list[4], list[5]);
-// }

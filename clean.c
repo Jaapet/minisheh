@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:43:48 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 16:05:27 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 20:01:18 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_clean_tab(char **tab)
+void	ft_clean_tab(char **tab)
 {
 	size_t	i;
 

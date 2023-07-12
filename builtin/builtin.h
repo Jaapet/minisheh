@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 17:23:09 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/07 21:34:39 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:45:22 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BUILTIN_H
 # include "../minishell.h"
 # include <stdbool.h>
+
 size_t	ft_get_env_size(char **envp);
 void	ft_free_env(t_ms *ms);
 void	ft_add_env(t_ms *ms, char *export_arg);

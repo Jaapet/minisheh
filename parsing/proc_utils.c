@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:13:57 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/11 23:11:12 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:57:46 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ char	*proc_word(char *word, int i, int last_op)
 			new = ft_calloc(i - last_op + 1, sizeof(char));
 		if (!last_op && i > 1 && is_op(word[0]) && redir_ok(word[0], word[1]))
 			last_op++;
-		if (!new)
-			return (NULL);
 		j = 0;
 		while (last_op < i)
 		{

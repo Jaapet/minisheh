@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:28:00 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/11 23:33:18 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:55:35 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	**proc(char *word)
 	}
 	if (i > last_op + 1
 		|| (i == 1 && word[0] != '|' && word[0] != '<' && word[0] != '>'))
-		list = lst_add(list, proc_word(word, i, last_op));//
+		list = lst_add(list, proc_word(word, i, last_op));
 	free(word);
 	return (list);
 }

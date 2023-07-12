@@ -3,25 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:51:59 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 17:05:35 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:45:49 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-// bool	ft_syntax(char *cmd)
-// {
-// 	L'identifiant doit commencer par une lettre (a-z ou A-Z).
-// Les caractères suivants peuvent être des lettres (a-z ou A-Z), des chiffres (0-9) ou le caractère souligné (_).
-// Les caractères spéciaux tels que l'espace, les symboles de ponctuation et les caractères de contrôle ne sont pas autorisés.
-// }
-
 int	ft_unset(t_ms *ms, char **cmd)
 {
-	size_t i;
+	size_t	i;
 
 	i = 1;
 	while (cmd[i])
