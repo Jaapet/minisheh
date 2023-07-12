@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 19:32:20 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/11 21:39:55 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:31:34 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,10 @@ char *ft_str_tolower(char *str)
 	return (out_str);
 }
 
-static int	synt_err(t_type type)
+static int	synt_err(void)
 {
-	char	*c;
-
-	if (type == is_pipe)
-		c = "|'";
-	else
-		c = "newline'";
 	g_ms->last_errcode = 258;
-	ft_printf_err(NULL, NULL,
-		ft_strjoin("Syntax error near unexpected token `", c));
+	ft_printf_err(NULL, NULL, "Syntax error");
 	return (0);
 }
 
@@ -116,20 +109,20 @@ int	check_synt(t_lex *list)
 	while (temp)
 	{
 		if (pipe && temp->type == is_pipe)
-			return (synt_err(is_pipe));
+			return (synt_err());
 		else if (pipe && temp->type == is_command)
 			pipe = 0;
 		else if (!pipe && temp->type == is_pipe)
 			pipe = 1;
 		else if (temp->type >= 2 && temp->type <= 5
 			&& (!temp->next || temp->next->type != 6))
-			return (synt_err(temp->type));
+			return (synt_err());
 		else if (temp->type >= 2 && temp->type <= 5 && temp->next->type == 6
 			&& !check_file(temp->next->word, temp->type))
 			return (0);
 		temp = temp->next;
 	}
 	if (pipe)
-		return (synt_err(is_pipe));
+		return (synt_err());
 	return (1);
 }
