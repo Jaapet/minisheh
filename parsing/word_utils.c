@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 15:14:53 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/11 23:19:53 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 20:49:28 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static char	*expand(char *word, char **env)
 {
 	char	*var;
 	int		i;
-	int		j;
 	char	quote;
 
 	i = 0;
@@ -63,20 +62,7 @@ static char	*expand(char *word, char **env)
 				free(var);
 			}
 			else
-			{
-				j = 1;
-				while (word[i + j] && is_valid_char(word[i + j]))
-					j++;
-				if (j > 1)
-				{
-					var = set_var(word, i, j, env);
-					word = replace_var(word, var, i, j);
-					i += ft_strlen(var) - 1;
-					free(var);
-				}
-				else
-					word = replace_var(word, "", i, j);
-			}
+				word = expand2(word, &i, env);
 		}
 		i++;
 	}

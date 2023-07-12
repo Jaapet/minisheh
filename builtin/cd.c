@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:24 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 19:15:27 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:27:15 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_cd(char *path, t_ms *ms)
 	export_cmd[2] = NULL;
 	if (chdir(path) != 0)
 	{
-		g_ms->last_errcode = errno; //MARCHE PAS
+		g_ms->last_errcode = errno;
 		perror("cd");
 		return (errno);
 	}

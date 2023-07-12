@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:37:03 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/11 21:45:44 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:44:16 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void	ft_export_list(char **envp)
 {
-	size_t i;
+	size_t	i;
 	char	*temp_str;
 	char	*ptr;
-	
+
 	i = 0;
 	while (envp[i])
 	{
-		if (ft_strncmp("_=",envp[i],2) != 0)
+		if (ft_strncmp("_=", envp[i], 2) != 0)
 		{
 			temp_str = ft_calloc(ft_strlen(envp[i]) + 3, sizeof(char *));
 			ft_strlcpy(temp_str, envp[i], ft_strlen(envp[i]) + 1);
@@ -32,20 +32,19 @@ static void	ft_export_list(char **envp)
 				*(ptr + 1) = '"';
 				*(ptr + ft_strlen(ptr)) = '"';
 			}
-			printf("declare -x %s\n",temp_str);
+			printf("declare -x %s\n", temp_str);
 			free(temp_str);
 		}
 		i++;
 	}
 }
 
-//NE GERE PAS LA CONCAT (ex: A+=42)
 int	ft_export(t_ms *ms, char **cmd)
 {
-	size_t i;
+	size_t	i;
 	char	*temp;
 
-	if (cmd == NULL || cmd[1] == NULL) //cmd == NULL pour debug
+	if (cmd == NULL || cmd[1] == NULL)
 		ft_export_list(ms->envp);
 	else
 	{
@@ -59,8 +58,8 @@ int	ft_export(t_ms *ms, char **cmd)
 			}
 			else if (ft_var_in_env(ms->envp, cmd[i]) == FALSE)
 				ft_add_env(ms, cmd[i]);
-			else if (ft_var_in_env(ms->envp, cmd[i]) == TRUE &&
-			ft_strchr(cmd[i], '=') != NULL)
+			else if (ft_var_in_env(ms->envp, cmd[i]) == TRUE
+				&& ft_strchr(cmd[i], '=') != NULL)
 			{
 				temp = ft_isolate_var(cmd[i]);
 				ft_rm_env(ms, temp);

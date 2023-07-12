@@ -6,17 +6,36 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:36:19 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/12 18:49:02 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 20:45:48 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+char	*expand2(char *word, int *i, char **env)
+{
+	char	*var;
+	int		j;
+
+	j = 1;
+	while (word[(*i) + j] && is_valid_char(word[(*i) + j]))
+		j++;
+	if (j > 1)
+	{
+		var = set_var(word, *i, j, env);
+		word = replace_var(word, var, *i, j);
+		*i += ft_strlen(var) - 1;
+		free(var);
+	}
+	else
+		word = replace_var(word, "", *i, j);
+	return (word);
+}
+
 char	*expand_heredoc(char *word, char **env)
 {
 	char	*var;
 	int		i;
-	int		j;
 
 	i = 0;
 	while (word[i])
@@ -31,20 +50,7 @@ char	*expand_heredoc(char *word, char **env)
 				free(var);
 			}
 			else
-			{
-				j = 1;
-				while (word[i + j] && is_valid_char(word[i + j]))
-					j++;
-				if (j > 1)
-				{
-					var = set_var(word, i, j, env);
-					word = replace_var(word, var, i, j);
-					i += ft_strlen(var) - 1;
-					free(var);
-				}
-				else
-					word = replace_var(word, "", i, j);
-			}
+				word = expand2(word, &i, env);
 		}
 		i++;
 	}
@@ -62,7 +68,7 @@ char	*expand_heredoc(char *word, char **env)
 // 	word = ft_calloc(6, sizeof(char));
 // 	word[0] = 'a';
 // 	word[1] = '$';
-// 	word[2] = '?';
+// 	word[2] = 't';
 // 	word[3] = 'o';
 // 	word[4] = '\'';
 // 	printf("%s\n", expand_heredoc(word, env));

@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 18:01:13 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 19:19:42 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:27:52 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static size_t ft_strlen_exit(char *cmd)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
-	while(cmd[i] == '0')
+	while (cmd[i] == '0')
 		i++;
-	while(cmd[i])
+	while (cmd[i])
 	{
 		i++;
 		j++;
@@ -29,9 +29,9 @@ static size_t ft_strlen_exit(char *cmd)
 	return (j);
 }
 
-static	bool ft_check_exit_arg(char *cmd)
+static bool	ft_check_exit_arg(char *cmd)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (ft_strlen_exit(cmd) > 10)
@@ -41,7 +41,7 @@ static	bool ft_check_exit_arg(char *cmd)
 	while (cmd[i])
 	{
 		if (ft_isdigit(cmd[i]) != 1)
-		return (FALSE);
+			return (FALSE);
 		i++;
 	}
 	return (TRUE);
@@ -49,15 +49,16 @@ static	bool ft_check_exit_arg(char *cmd)
 
 void	ft_builtin_exit(t_ms *ms, char **cmd)
 {
-	t_ms *dummy;
+	t_ms	*dummy;
 
 	dummy = ms;
 	if (cmd[1] == NULL)
 		exit(0);
 	else if (cmd[1] != NULL && cmd[2] != NULL)
-		return(ft_printf_err("exit", NULL, "too many arguments"), exit(1));
+		return (ft_printf_err("exit", NULL, "too many arguments"), exit(1));
 	else if (ft_check_exit_arg(cmd[1]) == FALSE)
-		return(ft_printf_err("exit", cmd[1], "numeric argument required"), exit(255));
+		return (ft_printf_err("exit", cmd[1], "numeric argument required"),
+			exit(255));
 	else
 		exit(ft_atoi(cmd[1]));
 }
