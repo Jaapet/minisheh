@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 19:08:48 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:36:50 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ typedef struct s_ms
 
 	bool	in_exec;
 	bool	in_heredoc;
-	int		heredoc_pid;
+	pid_t		heredoc_pid;
 	
 	int		last_errcode;
 }	t_ms;
@@ -105,7 +105,7 @@ int ft_echo(char **cmd);
 int	ft_env(t_ms *ms);
 int	ft_export(t_ms *ms, char **cmd);
 int	ft_unset(t_ms *ms, char **cmd);
-void	ft_builtin_exit(char *cmd);
+void	ft_builtin_exit(t_ms *ms, char **cmd);
 //PARSE
 t_lex	*parse(char *line, char **env);
 int		check_synt(t_lex *list);

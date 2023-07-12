@@ -6,7 +6,7 @@
 /*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:24 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 19:09:12 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:36:12 by ndesprez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int	ft_cd(char *path, t_ms *ms)
 	export_cmd[2] = NULL;
 	if (chdir(path) != 0)
 	{
+		g_ms->last_errcode = errno; //MARCHE PAS
 		perror("cd");
+		return (errno);
 	}
 	else
 	{

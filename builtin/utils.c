@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:40:23 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/07 23:55:55 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/11 23:34:33 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char **ft_dup_env(char **envp)
 {
 	char	**new_env;
 	size_t	i;
-	
+
 	new_env = ft_calloc(ft_get_env_size(envp) + 1, sizeof(char **));
 	i = 0;
 	while (envp[i] != NULL)
@@ -77,7 +77,7 @@ bool	ft_var_syntax(char *bin_name, char *var)
 		varname = ft_isolate_var(var);
 	else
 		varname = ft_strdup(var);
-	if (ft_isalpha(varname[0]) == 0)
+	if (ft_isalpha(varname[0]) == 0 && varname[0] != '_')
 	{
 		ft_printf_err(bin_name, var, "not a valid identifier");
 		return (free(varname), FALSE);
@@ -201,6 +201,9 @@ char	*ft_isolate_var(char *full_var)
 	char	*to_rm;
 	
 	out = ft_strdup(full_var);
+	to_rm = ft_strchr(out, ' ');
+	if (to_rm != NULL)
+		*to_rm = '\0';
 	to_rm = ft_strchr(out, '=');
 	if (to_rm != NULL)
 		*to_rm = '\0';

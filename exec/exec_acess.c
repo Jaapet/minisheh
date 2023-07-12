@@ -29,6 +29,7 @@ static char *ft_cmd_in_path(char *cmd, char **path)
 		free(temp_cmd);
 		i++;
 	}
+	ft_printf_err(cmd, NULL, "command not found");
 	return (NULL);
 	// ft_exit(ERR_CMD_NOT_FOUND, ms);
 }
@@ -65,6 +66,8 @@ static void	ft_parse_cmd(t_exe *curr_exe, char **path)
 
 	temp_cmd = NULL;
 	to_lower_cmd = NULL;
+	if (curr_exe->cmd == NULL)
+		return ;
 	to_lower_cmd = ft_str_tolower(curr_exe->cmd[0]);
 	// if (out_cmd == NULL)
 		// ft_exit(ERR_MALLOC, pipex);
