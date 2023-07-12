@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:36:47 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 23:57:54 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/13 00:14:23 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void static	ft_free_rl(char *rl)
 {
-	free_lex();
-	free_exe();
 	free_ptr(rl);
 }
 
