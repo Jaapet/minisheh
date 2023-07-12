@@ -6,32 +6,42 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 18:36:47 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 19:34:24 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:18:40 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **env)
+void	ft_init(char **env, int *ac, char **av)
 {
-	char	*rl;
-
-	g_ms = ft_calloc(1, sizeof(t_ms));
 	ac = 0;
 	av = NULL;
+	g_ms = ft_calloc(1, sizeof(t_ms));
 	g_ms->envp = ft_dup_env(env);
 	ft_banner();
 	g_ms->prompt = ft_prompt_str(g_ms->envp);
 	handle();
+}
+
+void	ft_rl_exit(char *rl)
+{
+	if (!rl)
+	{
+		printf("exit\n");
+		exit(0);
+	}
+}
+
+int	main(int ac, char **av, char **env)
+{
+	char	*rl;
+
+	ft_init(env, &ac, av);
 	while (1)
 	{
 		rl = readline(g_ms->prompt);
-		if (!rl)
-		{
-			printf("exit\n");
-			exit(0);
-		}
-		else if (rl[0] == '\0')
+		ft_rl_exit(rl);
+		if (rl[0] == '\0')
 			continue ;
 		add_history(rl);
 		g_ms->lex_first = parse(rl, g_ms->envp);
@@ -45,6 +55,7 @@ int	main(int ac, char **av, char **env)
 			if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
 				perror("signal");
 		}
+		//ft_free_lex_and_exe
 	}
 	return (0);
 }

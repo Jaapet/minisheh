@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 19:15:09 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:45:46 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,7 @@
 # include <readline/history.h>
 # define BASH_NAME_ERR	"minisheh: "
 # include "libft/includes/libft.h"
-// TEMPORARY
-# define ERR_DUMMY 1
-// REDIRECTION DEFINES (OBSOLETE)
-# define RD_I_S 1
-# define RD_I_D 2
-# define RD_O_S 3
-# define RD_O_D 4
+
 // BOOL
 # define TRUE 1
 # define FALSE 0

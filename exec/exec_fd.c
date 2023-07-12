@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:21:32 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/09 14:16:08 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:07:42 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_single_node(t_ms *ms)
 	ft_get_node(ms->exe_first, 0)->fd_o = 1;
 }
 
-static void ft_node_i(t_ms *ms, size_t i)
+static void	ft_node_i(t_ms *ms, size_t i)
 {
 	if (i == 0)
 	{
@@ -36,10 +36,11 @@ static void ft_node_i(t_ms *ms, size_t i)
 		ft_get_node(ms->exe_first, i)->fd_o = ms->pipes[i * 2 + 3];
 	}
 }
+
 //We assume than there is already 1 or more nodes in the list
 void	ft_assign_fd(t_ms *ms)
 {
-	size_t i;
+	size_t	i;
 
 	if (ms->cmd_nb == 1)
 		ft_single_node(ms);
