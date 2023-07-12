@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:40:23 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 19:47:45 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:57:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	ft_free_env(t_ms *ms)
 	i = 0;
 	while (ms->envp[i])
 	{
-		free(ms->envp[i]);
+		free_ptr(ms->envp[i]);
 		i++;
 	}
-	free(ms->envp);
+	free_ptr(ms->envp);
 }
 
 char	**ft_dup_env(char **envp)
@@ -82,7 +82,7 @@ bool	ft_var_syntax(char *bin_name, char *var)
 	if (ft_isalpha(varname[0]) == 0 && varname[0] != '_')
 	{
 		ft_printf_err(bin_name, var, "not a valid identifier");
-		return (free(varname), FALSE);
+		return (free_ptr(varname), FALSE);
 	}
 	i = 1;
 	while (varname[i])
@@ -90,9 +90,9 @@ bool	ft_var_syntax(char *bin_name, char *var)
 		if (varname[i] != '_' && ft_isalnum(varname[i]) != 1)
 		{
 			ft_printf_err(bin_name, var, "not a valid identifier");
-			return (free(varname), FALSE);
+			return (free_ptr(varname), FALSE);
 		}
 		i++;
 	}
-	return (free(varname), TRUE);
+	return (free_ptr(varname), TRUE);
 }

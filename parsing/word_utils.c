@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   word_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 15:14:53 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/12 20:49:28 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:57:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*rem_quotes(char *word, int count)
 		}
 		i++;
 	}
-	free(word);
+	free_ptr(word);
 	return (new);
 }
 
@@ -59,7 +59,7 @@ static char	*expand(char *word, char **env)
 				var = ft_itoa(g_ms->last_errcode);
 				word = replace_var(word, var, i, 2);
 				i += ft_strlen(var) - 1;
-				free(var);
+				free_ptr(var);
 			}
 			else
 				word = expand2(word, &i, env);

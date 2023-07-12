@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:34:22 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 23:22:43 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:58:18 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,5 @@ void	rl_replace_line(const char *text, int clear_undo);
 void	free_lex(void);
 void	free_exe(void);
 void	ft_triple_free(char *ptr, char *ptr2, char *ptr3);
+void	free_ptr(void *ptr);
 #endif

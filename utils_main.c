@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 19:32:20 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 23:25:11 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:57:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	ft_printf_err(char *bin_name, char *args, char *err_msg)
 	{
 		tmp = ft_strjoin(BASH_NAME_ERR, bin_name);
 		tmp2 = ft_strjoin(tmp, ": ");
-		free(tmp);
+		free_ptr(tmp);
 	}
 	else
 		tmp2 = ft_strjoin(BASH_NAME_ERR, "");
 	if (args)
 	{
 		tmp = ft_strjoin(tmp2, args);
-		free(tmp2);
+		free_ptr(tmp2);
 		tmp2 = ft_strjoin(tmp, ": ");
-		free (tmp);
+		free_ptr (tmp);
 	}
 	tmp = ft_strjoin(tmp2, err_msg);
 	buff = ft_strjoin(tmp, "\n");

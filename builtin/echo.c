@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 19:00:12 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 19:10:28 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:57:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static char	*ft_add_str(char *dest, char *to_add)
 	else
 	{
 		temp = ft_strjoin(dest, " ");
-		free(dest);
+		free_ptr(dest);
 		dest = temp;
 		temp = ft_strjoin(dest, to_add);
-		free(dest);
+		free_ptr(dest);
 		dest = temp;
 	}
 	return (dest);
@@ -37,7 +37,7 @@ static char	*ft_add_nl(char *str)
 	char	*temp;
 
 	temp = ft_strjoin(str, "\n");
-	free(str);
+	free_ptr(str);
 	str = temp;
 	return (str);
 }
@@ -83,6 +83,6 @@ int	ft_echo(char **cmd)
 		out = ft_add_nl(out);
 	printf("%s", out);
 	if (out != NULL)
-		free(out);
+		free_ptr(out);
 	return (0);
 }

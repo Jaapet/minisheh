@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 18:33:24 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 23:19:23 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:57:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	ft_cd(char *path, t_ms *ms)
 			temp = ft_isolate_val(ft_get_env_value(ms->envp, "PWD"));
 			export_cmd[1] = ft_strjoin("OLDPWD=", temp);
 			ft_export(ms, export_cmd);
-			free(temp);
-			free(export_cmd[1]);
+			free_ptr(temp);
+			free_ptr(export_cmd[1]);
 		}
 		export_cmd[1] = ft_strjoin("PWD=", getcwd(pwd, PATH_MAX));
 		ft_export(ms, export_cmd);
-		free(export_cmd[1]);
+		free_ptr(export_cmd[1]);
 	}
 	return (0);
 }

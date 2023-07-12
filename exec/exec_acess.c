@@ -23,10 +23,10 @@ static char	*ft_cmd_in_path(char *cmd, char **path)
 	{
 		temp_str = ft_strjoin(path[i], "/");
 		temp_cmd = ft_strjoin(temp_str, cmd);
-		free(temp_str);
+		free_ptr(temp_str);
 		if (access(temp_cmd, X_OK) == 0)
 			return (temp_cmd);
-		free(temp_cmd);
+		free_ptr(temp_cmd);
 		i++;
 	}
 	ft_printf_err(cmd, NULL, "command not found");
@@ -67,13 +67,13 @@ static void	ft_parse_cmd(t_exe *curr_exe, char **path)
 	to_lower_cmd = ft_str_tolower(curr_exe->cmd[0]);
 	ft_is_builtin(curr_exe);
 	if (curr_exe->is_builtin == TRUE)
-		return (free(to_lower_cmd));
+		return (free_ptr(to_lower_cmd));
 	else if (access(to_lower_cmd, X_OK) == 0)
-		return (free(to_lower_cmd));
+		return (free_ptr(to_lower_cmd));
 	else
 		temp_cmd = ft_cmd_in_path(to_lower_cmd, path);
-	free(to_lower_cmd);
-	free(curr_exe->cmd[0]);
+	free_ptr(to_lower_cmd);
+	free_ptr(curr_exe->cmd[0]);
 	curr_exe->cmd[0] = temp_cmd;
 }
 

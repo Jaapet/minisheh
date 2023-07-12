@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:11:10 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 23:19:05 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:57:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void	ft_end_here_doc(char *buf, int fd)
 {
-	free(buf);
+	free_ptr(buf);
 	close(fd);
 	exit(0);
 }
@@ -39,7 +39,7 @@ int	ft_open_heredoc(char *delim)
 				break ;
 			buf = expand_heredoc(buf, g_ms->envp);
 			write(temp_fd, buf, ft_strlen(buf));
-			free(buf);
+			free_ptr(buf);
 		}
 		ft_end_here_doc(buf, temp_fd);
 	}

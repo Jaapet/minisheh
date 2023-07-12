@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sexy.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:11:24 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 20:00:36 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:57:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_prompt_str(char **env)
 	if (trimed == NULL)
 		return (ft_strdup("minisheh> "));
 	out = ft_strjoin(trimed, "@minisheh> ");
-	free(trimed);
+	free_ptr(trimed);
 	if (out == NULL)
 		return (ft_strdup("minisheh> "));
 	return (out);

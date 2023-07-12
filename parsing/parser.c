@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndesprez <ndesprez@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 17:28:00 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/12 19:55:35 by ndesprez         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:57:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	**proc(char *word)
 	if (i > last_op + 1
 		|| (i == 1 && word[0] != '|' && word[0] != '<' && word[0] != '>'))
 		list = lst_add(list, proc_word(word, i, last_op));
-	free(word);
+	free_ptr(word);
 	return (list);
 }
 
@@ -67,7 +67,7 @@ static void	add_cmd(t_lex **list, char **words, char **env)
 		add_back(list, words[i], env);
 		i++;
 	}
-	free(words);
+	free_ptr(words);
 }
 
 static t_lex	*proc_cmds(char **cmds, char **env)
@@ -82,7 +82,7 @@ static t_lex	*proc_cmds(char **cmds, char **env)
 		add_cmd(&list, proc(cmds[i]), env);
 		i++;
 	}
-	free(cmds);
+	free_ptr(cmds);
 	return (list);
 }
 

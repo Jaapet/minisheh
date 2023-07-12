@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 19:48:00 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/12 23:10:25 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:57:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ bool	ft_var_in_env(char **env, char *var)
 	{
 		if (ft_strncmp(env[i], varname, ft_strlen(varname)) == 0
 			&&env[i][ft_strlen(varname)] == '=')
-			return (free(varname), TRUE);
+			return (free_ptr(varname), TRUE);
 		else if (ft_strncmp(env[i], varname, ft_strlen(varname)) == 0
 			&& env[i][ft_strlen(varname)] == '\0')
-			return (free(varname), TRUE);
+			return (free_ptr(varname), TRUE);
 		i++;
 	}
-	return (free(varname), FALSE);
+	return (free_ptr(varname), FALSE);
 }
 
 char	*ft_get_env_value(char **env, char *var)
@@ -49,13 +49,13 @@ char	*ft_get_env_value(char **env, char *var)
 	{
 		if (ft_strncmp(env[i], varname, ft_strlen(varname)) == 0
 			&& env[i][ft_strlen(varname)] == '=')
-			return (free(varname), env[i]);
+			return (free_ptr(varname), env[i]);
 		else if (ft_strncmp(env[i], varname, ft_strlen(varname)) == 0
 			&& env[i][ft_strlen(varname)] == '\0')
-			return (free(varname), env[i]);
+			return (free_ptr(varname), env[i]);
 		i++;
 	}
-	return (free(varname), NULL);
+	return (free_ptr(varname), NULL);
 }
 
 void	ft_rm_env(t_ms *ms, char *unset_arg)
@@ -81,7 +81,7 @@ void	ft_rm_env(t_ms *ms, char *unset_arg)
 		}
 		i++;
 	}
-	free(temp);
+	free_ptr(temp);
 	ft_free_env(ms);
 	ms->envp = new_env;
 }

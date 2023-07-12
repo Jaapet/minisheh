@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 16:37:03 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 23:18:12 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:57:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	ft_rm_env_2(t_ms *ms, char *unset_arg)
 		}
 		i++;
 	}
-	free(temp);
+	free_ptr(temp);
 	ft_free_env(ms);
 	ms->envp = new_env;
 }
@@ -61,7 +61,7 @@ static void	ft_export_list(char **envp)
 				*(ptr + ft_strlen(ptr)) = '"';
 			}
 			printf("declare -x %s\n", temp_str);
-			free(temp_str);
+			free_ptr(temp_str);
 		}
 		i++;
 	}
@@ -84,7 +84,7 @@ static void	ft_group_export(t_ms *ms, char **cmd, int i)
 		temp = ft_isolate_var(cmd[i]);
 		ft_rm_env(ms, temp);
 		ft_rm_env_2(ms, temp);
-		free(temp);
+		free_ptr(temp);
 		ft_add_env(ms, cmd[i]);
 	}
 }

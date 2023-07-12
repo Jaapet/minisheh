@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 17:53:40 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/12 21:32:01 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:57:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*set_var(char *word, int beg, int size, char **env)
 	var = ft_get_env_value(env, name);
 	if (!var)
 		return (ft_strdup(""));
-	free(name);
+	free_ptr(name);
 	return (var);
 }
 
@@ -85,7 +85,7 @@ char	*replace_var(char *word, char *var, int beg, int size)
 		iterators[0]++;
 		iterators[1]++;
 	}
-	return (free(word), new);
+	return (free_ptr(word), new);
 }
 
 // int	main(void)

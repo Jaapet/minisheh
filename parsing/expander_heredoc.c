@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:36:19 by ndesprez          #+#    #+#             */
-/*   Updated: 2023/07/12 21:32:10 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:57:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*expand2(char *word, int *i, char **env)
 		var = set_var(word, *i, j, env);
 		word = replace_var(word, var, *i, j);
 		*i += ft_strlen(var) - 1;
-		free(var);
+		free_ptr(var);
 	}
 	else
 		word = replace_var(word, "", *i, j);
@@ -47,7 +47,7 @@ char	*expand_heredoc(char *word, char **env)
 				var = ft_itoa(g_ms->last_errcode);
 				word = replace_var(word, var, i, 2);
 				i += ft_strlen(var) - 1;
-				free(var);
+				free_ptr(var);
 			}
 			else
 				word = expand2(word, &i, env);

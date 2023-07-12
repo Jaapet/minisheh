@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:39:19 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/12 21:08:14 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:57:54 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ char	**ft_parse_path(t_ms *ms)
 	temp_str = ft_isolate_path(ms->envp);
 	temp_str = ft_strtrim(temp_str, "PATH=");
 	path = ft_split(temp_str, ':');
-	free(temp_str);
+	free_ptr(temp_str);
 	return (path);
 }
