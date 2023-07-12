@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 15:33:44 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/11 21:11:20 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:10:10 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ void	ft_exec(t_ms *ms, char **envp)
 	cur_node = ms->exe_first;
 	while (cur_node)
 	{
-		if (ft_get_node(ms->exe_first, ms->cmd_nb - 1)->pid == waitpid(cur_node->pid, &ret, 0))
+		if (ms->cmd_nb != 0 && ft_get_node(ms->exe_first, ms->cmd_nb - 1)->pid == waitpid(cur_node->pid, &ret, 0))
 			g_ms->last_errcode = WEXITSTATUS(ret);
 		cur_node = cur_node->next;
 	}

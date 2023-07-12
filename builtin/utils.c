@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:40:23 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/11 20:51:31 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/11 23:34:33 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,9 @@ char	*ft_isolate_var(char *full_var)
 	char	*to_rm;
 	
 	out = ft_strdup(full_var);
+	to_rm = ft_strchr(out, ' ');
+	if (to_rm != NULL)
+		*to_rm = '\0';
 	to_rm = ft_strchr(out, '=');
 	if (to_rm != NULL)
 		*to_rm = '\0';

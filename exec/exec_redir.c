@@ -6,11 +6,46 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:11:10 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/10 22:38:03 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:39:56 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
+#include "../builtin/builtin.h"
+
+// static char *ft_replace_var_hd(char *str_cpy, char *var_val)
+// {
+// 	char *new_str_cpy;
+// 	char *tmp;
+	
+// 	tmp = ft_strdup(str_cpy);
+// 	*(ft_strchr(tmp, '$')) = '\0';
+// 	new_str_cpy = ft_strjoin(tmp, var_val);
+// 	free(tmp);
+// 	free(str_cpy);
+// 	free(var_val);
+// 	return (new_str_cpy);
+// }
+
+// static char *ft_expand_heredoc(char *str)
+// {
+// 	char *var_val;
+// 	char *str_cpy;
+// 	char *var_name;
+	
+// 	str_cpy = ft_strdup(str);
+// 	while(ft_strchr(str_cpy, '$') != NULL)
+// 	{
+// 		var_name = ft_isolate_var(str_cpy);
+// 		var_val = ft_get_env_value( g_ms->envp, var_name);
+// 		str_cpy = ft_replace_var_hd(str_cpy, var_val);
+// 		free(var_name);
+// 	}
+// 	free (str);
+// 	HELP ME
+// 	return (str_cpy);
+
+// }
 
 static int ft_open_heredoc(char *delim)
 {
@@ -29,6 +64,7 @@ static int ft_open_heredoc(char *delim)
 			buf = get_next_line(0);
 			if (ft_strncmp(delim, buf, ft_strlen(delim)) == 0)
 				break ;
+			// buf = ft_expand_heredoc(buf);
 			write(temp_fd, buf, ft_strlen(buf));
 			free(buf);
 		}
@@ -50,6 +86,8 @@ void	ft_set_redir(t_ms *ms)
 	lst = ms->exe_first;
 	while (lst)
 	{
+		if (lst->redir == NULL)
+			return ;
 		if (lst->redir->type != undefined)
 		{
 			while ((lst->redir + i)->type != 0)

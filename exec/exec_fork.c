@@ -6,7 +6,7 @@
 /*   By: ggualerz <ggualerz@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:16:18 by ggualerz          #+#    #+#             */
-/*   Updated: 2023/07/11 21:19:32 by ggualerz         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:12:58 by ggualerz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_fork(t_ms *ms, char **envp, size_t cmd_i)
 			{
 				execve(cur_node->cmd[0], cur_node->cmd, envp);
 			}
-			return (perror("perror"));
+			exit (errno);
 		}	
 	}
 }
